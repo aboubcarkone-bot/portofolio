@@ -1,0 +1,832 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aboubacar Kone - Portfolio BTS SIO SISR</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #0a0e27 0%, #1a1a2e 50%, #16213e 100%);
+            color: #ffffff;
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+
+        /* Navigation futuriste */
+        .navbar {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(10, 14, 39, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid #00d4ff;
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: #00d4ff;
+            text-shadow: 0 0 20px rgba(0, 212, 255, 0.5);
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            color: #ffffff;
+            text-decoration: none;
+            padding: 0.5rem 1rem;
+            border-radius: 25px;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .nav-links a:hover {
+            color: #00d4ff;
+            background: rgba(0, 212, 255, 0.1);
+            box-shadow: 0 0 15px rgba(0, 212, 255, 0.3);
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            background: radial-gradient(ellipse at center, rgba(0, 212, 255, 0.1) 0%, transparent 70%);
+        }
+
+        .hero-content {
+            text-align: center;
+            z-index: 2;
+            animation: slideUp 1s ease-out;
+        }
+
+        .hero h1 {
+            font-size: 4rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            background: linear-gradient(45deg, #00d4ff, #ffffff, #00ff88);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero .subtitle {
+            font-size: 1.5rem;
+            color: #a0a0a0;
+            margin-bottom: 2rem;
+            animation: fadeIn 1.5s ease-out;
+        }
+
+        .cta-button {
+            display: inline-block;
+            padding: 1rem 2rem;
+            background: linear-gradient(45deg, #00d4ff, #00ff88);
+            color: #000;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(0, 212, 255, 0.3);
+            border: none;
+            cursor: pointer;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(0, 212, 255, 0.5);
+        }
+
+        /* Particules animées */
+        .particles {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+        }
+
+        .particle {
+            position: absolute;
+            width: 2px;
+            height: 2px;
+            background: #00d4ff;
+            border-radius: 50%;
+            animation: float 6s infinite linear;
+        }
+
+        /* Sections */
+        .section {
+            padding: 5rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            text-align: center;
+            margin-bottom: 3rem;
+            color: #00d4ff;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 3px;
+            background: linear-gradient(45deg, #00d4ff, #00ff88);
+        }
+
+        /* Grid des compétences */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .skill-card {
+            background: linear-gradient(145deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.05));
+            border: 1px solid rgba(0, 212, 255, 0.3);
+            border-radius: 20px;
+            padding: 2rem;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+        }
+
+        .skill-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0, 212, 255, 0.2);
+            border-color: #00d4ff;
+        }
+
+        .skill-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            color: #00ff88;
+        }
+
+        .skill-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: #00d4ff;
+        }
+
+        /* Projets */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .project-card {
+            background: linear-gradient(145deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.05));
+            border: 1px solid rgba(0, 212, 255, 0.3);
+            border-radius: 20px;
+            padding: 2rem;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .project-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(0, 212, 255, 0.1), transparent);
+            transition: left 0.5s ease;
+        }
+
+        .project-card:hover::before {
+            left: 100%;
+        }
+
+        .project-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0, 212, 255, 0.2);
+            border-color: #00d4ff;
+        }
+
+        .project-tag {
+            display: inline-block;
+            background: rgba(0, 212, 255, 0.2);
+            color: #00d4ff;
+            padding: 0.3rem 0.8rem;
+            border-radius: 15px;
+            font-size: 0.8rem;
+            margin: 0.2rem;
+        }
+
+        /* Timeline */
+        .timeline {
+            position: relative;
+            margin: 3rem 0;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 2px;
+            height: 100%;
+            background: linear-gradient(to bottom, #00d4ff, #00ff88);
+        }
+
+        .timeline-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin: 2rem 0;
+            position: relative;
+        }
+
+        .timeline-content {
+            background: linear-gradient(145deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.05));
+            border: 1px solid rgba(0, 212, 255, 0.3);
+            border-radius: 15px;
+            padding: 1.5rem;
+            width: 45%;
+            backdrop-filter: blur(10px);
+        }
+
+        .timeline-item:nth-child(even) .timeline-content {
+            margin-left: auto;
+        }
+
+        .timeline-dot {
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 15px;
+            height: 15px;
+            background: #00d4ff;
+            border-radius: 50%;
+            box-shadow: 0 0 20px rgba(0, 212, 255, 0.5);
+        }
+
+        /* Contact */
+        .contact-form {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .form-group {
+            margin-bottom: 2rem;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 1rem;
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(0, 212, 255, 0.3);
+            border-radius: 10px;
+            color: #ffffff;
+            font-size: 1rem;
+            backdrop-filter: blur(10px);
+        }
+
+        .form-group input::placeholder,
+        .form-group textarea::placeholder {
+            color: #a0a0a0;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: #00d4ff;
+            box-shadow: 0 0 15px rgba(0, 212, 255, 0.3);
+        }
+
+        .contact-link {
+            color: #00d4ff;
+            font-size: 1.2rem;
+            text-decoration: none;
+            display: inline-block;
+            margin-top: 1rem;
+            padding: 0.5rem 1rem;
+            border: 1px solid rgba(0, 212, 255, 0.3);
+            border-radius: 10px;
+            transition: all 0.3s ease;
+        }
+
+        .contact-link:hover {
+            background: rgba(0, 212, 255, 0.1);
+            box-shadow: 0 0 15px rgba(0, 212, 255, 0.3);
+            transform: translateY(-2px);
+        }
+
+        /* Footer */
+        .footer {
+            text-align: center;
+            padding: 2rem;
+            background: rgba(10, 14, 39, 0.8);
+            border-top: 1px solid rgba(0, 212, 255, 0.3);
+        }
+
+        /* Animations */
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        @keyframes float {
+            from {
+                transform: translateY(100vh) rotate(0deg);
+                opacity: 1;
+            }
+            to {
+                transform: translateY(-100px) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .nav-links {
+                display: none;
+            }
+            
+            .timeline::before {
+                left: 20px;
+            }
+            
+            .timeline-content {
+                width: calc(100% - 60px);
+                margin-left: 60px !important;
+            }
+            
+            .timeline-dot {
+                left: 20px;
+            }
+        }
+
+        /* À propos styles */
+        .about-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .about-card {
+            background: linear-gradient(145deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.05));
+            border: 1px solid rgba(0, 212, 255, 0.3);
+            border-radius: 20px;
+            padding: 2.5rem;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+        }
+
+        .about-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0, 212, 255, 0.2);
+            border-color: #00d4ff;
+        }
+
+        .about-icon {
+            font-size: 4rem;
+            text-align: center;
+            margin-bottom: 1.5rem;
+            animation: float-icon 3s ease-in-out infinite;
+        }
+
+        @keyframes float-icon {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-10px);
+            }
+        }
+
+        .about-card h3 {
+            color: #00d4ff;
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+            text-align: center;
+        }
+
+        .about-text {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: #d0d0d0;
+            text-align: justify;
+        }
+
+        @media (max-width: 768px) {
+            .about-container {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo">Aboubacar Kone</div>
+            <ul class="nav-links">
+                <li><a href="#accueil">Accueil</a></li>
+                <li><a href="#apropos">À propos</a></li>
+                <li><a href="#competences">Compétences</a></li>
+                <li><a href="#projets">Projets</a></li>
+                <li><a href="#parcours">Parcours</a></li>
+                <li><a href="#veille">Veille Technologique</a></li>
+                <li><a href="#tableau-veille">Tableau de Veille</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="accueil" class="hero">
+        <div class="particles"></div>
+        <div class="hero-content">
+            <h1>Aboubacar Kone</h1>
+            <p class="subtitle">Étudiant BTS SIO SISR • Spécialiste Infrastructure & Réseaux</p>
+            <a href="#projets" class="cta-button">Découvrir mes projets</a>
+        </div>
+    </section>
+
+    <!-- À propos -->
+    <section id="apropos" class="section">
+        <h2 class="section-title">À Propos de Moi</h2>
+        <div class="about-container">
+            <div class="about-card">
+                <div class="about-icon">👨‍💻</div>
+                <p class="about-text">
+                    Étudiant en BTS SIO, je suis passionné par la technologie depuis toujours. Ma curiosité et mon intérêt pour ce domaine m'ont conduit à me plonger dans l'univers de la cybersécurité. Étant enthousiaste, créatif, persévérant et ambitieux, je m'investis pleinement dans ma formation.
+                </p>
+                <div style="text-align: center; margin-top: 2rem; display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
+                    <a href="https://www.linkedin.com/in/aboubacarkone" target="_blank" style="display: inline-block; padding: 0.8rem 1.5rem; background: #0077b5; color: white; text-decoration: none; border-radius: 10px; font-weight: bold; transition: all 0.3s ease; box-shadow: 0 5px 15px rgba(0, 119, 181, 0.3);">
+                        <span style="font-size: 1.2rem; margin-right: 0.5rem;">💼</span> Profil LinkedIn
+                    </a>
+                    <a href="#" onclick="alert('Veuillez télécharger votre CV et le placer dans le même dossier que ce fichier HTML, puis remplacez le # par le nom du fichier (ex: CV_Aboubacar_Kone.pdf)'); return false;" style="display: inline-block; padding: 0.8rem 1.5rem; background: linear-gradient(45deg, #00d4ff, #00ff88); color: #000; text-decoration: none; border-radius: 10px; font-weight: bold; transition: all 0.3s ease; box-shadow: 0 5px 15px rgba(0, 212, 255, 0.3);">
+                        <span style="font-size: 1.2rem; margin-right: 0.5rem;">📄</span> Télécharger mon CV
+                    </a>
+                </div>
+            </div>
+            <div class="about-card">
+                <div class="about-icon">🎯</div>
+                <h3>Mon Projet Professionnel</h3>
+                <p class="about-text">
+                    Mon projet professionnel consiste à évoluer dans le domaine de l'informatique, en commençant par mon BTS SIO en alternance, où je me forme en tant que technicien support et administrateur réseau. Mon objectif à moyen terme est de poursuivre mes études vers un Master en Cybersécurité, afin de devenir expert dans la protection des systèmes informatiques. À long terme, je vise à occuper un poste stratégique, comme celui de responsable de la sécurité des systèmes d'information (RSSI), pour sécuriser les infrastructures et anticiper les cybermenaces.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Compétences -->
+    <section id="competences" class="section">
+        <h2 class="section-title">Compétences Techniques</h2>
+        <div class="skills-grid">
+            <div class="skill-card">
+                <div class="skill-icon">🖥️</div>
+                <h3>Administration Système</h3>
+                <p>Windows Server, Linux, Active Directory, GPO, DNS, DHCP</p>
+            </div>
+            <div class="skill-card">
+                <div class="skill-icon">🌐</div>
+                <h3>Infrastructure Réseau</h3>
+                <p>Cisco, VLAN, Routage, Commutation, Firewall, VPN</p>
+            </div>
+            <div class="skill-card">
+                <div class="skill-icon">🔒</div>
+                <h3>Sécurité Informatique</h3>
+                <p>Pare-feu, Antivirus, Chiffrement, Audit de sécurité</p>
+            </div>
+            <div class="skill-card">
+                <div class="skill-icon">📊</div>
+                <h3>Supervision & Monitoring</h3>
+                <p>PRTG, Nagios, Zabbix, Analyse de performances</p>
+            </div>
+            <div class="skill-card">
+                <div class="skill-icon">☁️</div>
+                <h3>Cloud & Virtualisation</h3>
+                <p>VMware, Hyper-V, AWS, Azure, Docker</p>
+            </div>
+            <div class="skill-card">
+                <div class="skill-icon">🛠️</div>
+                <h3>Support & Maintenance</h3>
+                <p>Help Desk, Ticketing, Documentation technique</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projets -->
+    <section id="projets" class="section">
+        <h2 class="section-title">Projets Réalisés en Entreprise</h2>
+        
+        <div class="projects-grid">
+            <div class="project-card">
+                <h3>Serveur de Messagerie avec Active Directory</h3>
+                <p>Installation et configuration complète d'un serveur mail Linux (Postfix + Dovecot) intégré à Active Directory. Gestion des utilisateurs via LDAP, configuration IMAP/POP3/SMTP, et mise en place de Thunderbird côté client.</p>
+                <div class="project-tag">Postfix</div>
+                <div class="project-tag">Dovecot</div>
+                <div class="project-tag">Active Directory</div>
+                <div class="project-tag">LDAP</div>
+                <div class="project-tag">Ubuntu Server</div>
+                <div class="project-tag">Thunderbird</div>
+                <div style="margin-top: 1.5rem; text-align: center;">
+                    <a href="#" onclick="alert('Veuillez placer le fichier svrmail.pdf dans le même dossier que ce fichier HTML, puis remplacez le # par svrmail.pdf'); return false;" style="display: inline-block; padding: 0.6rem 1.2rem; background: rgba(0, 212, 255, 0.2); color: #00d4ff; text-decoration: none; border-radius: 8px; border: 1px solid #00d4ff; font-size: 0.9rem; transition: all 0.3s ease;">
+                        📄 Voir la documentation complète
+                    </a>
+                </div>
+            </div>
+            
+            <div class="project-card">
+                <h3>Cluster Haute Disponibilité Linux Heartbeat</h3>
+                <p>Mise en place d'un cluster de haute disponibilité avec Linux Heartbeat. Configuration de 2 nœuds + 1 client, détection automatique de panne, surveillance de vie (liveness) et basculement automatique des services Apache2.</p>
+                <div class="project-tag">Linux Heartbeat</div>
+                <div class="project-tag">Haute Disponibilité</div>
+                <div class="project-tag">Clustering</div>
+                <div class="project-tag">Apache2</div>
+                <div class="project-tag">Ubuntu 22.04</div>
+                <div class="project-tag">Failover</div>
+                <div style="margin-top: 1.5rem; text-align: center;">
+                    <a href="#" onclick="alert('Veuillez placer le fichier Heartbeat.pdf dans le même dossier que ce fichier HTML, puis remplacez le # par Heartbeat.pdf'); return false;" style="display: inline-block; padding: 0.6rem 1.2rem; background: rgba(0, 212, 255, 0.2); color: #00d4ff; text-decoration: none; border-radius: 8px; border: 1px solid #00d4ff; font-size: 0.9rem; transition: all 0.3s ease;">
+                        📄 Voir la documentation complète
+                    </a>
+                </div>
+            </div>
+
+            <div class="project-card">
+                <h3>Déploiement Multi-Sites</h3>
+                <p>Masterisation et déploiement de PC sur l'ensemble des sites de Gagneraud Construction (Normandie, IDF, Est et Ouest France). Support à distance via TeamViewer et maintenance du parc informatique.</p>
+                <div class="project-tag">Masterisation</div>
+                <div class="project-tag">TeamViewer</div>
+                <div class="project-tag">Support Multi-Sites</div>
+            </div>
+            
+            <div class="project-card">
+                <h3>Support Télécom & Sécurité</h3>
+                <p>Chez Paritel : tests de lignes Orange, réparation d'alarmes via Power Manager, gestion de caméras RXCamView et support utilisateur via système de ticketing.</p>
+                <div class="project-tag">Tests Lignes Orange</div>
+                <div class="project-tag">Power Manager</div>
+                <div class="project-tag">RXCamView</div>
+                <div class="project-tag">Ticketing Kairos</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Parcours -->
+    <section id="parcours" class="section">
+        <h2 class="section-title">Mon Parcours</h2>
+        <div class="timeline">
+            <div class="timeline-item">
+                <div class="timeline-content">
+                    <h3>Septembre 2024 - Présent | Gagneraud Construction</h3>
+                    <p><strong>Technicien Support Informatique (2ème année BTS SIO)</strong></p>
+                    <p>• Masterisation et déploiement de PC<br>
+                    • Support informatique multi-sites (Normandie, Nord Paris Gennevilliers, Est et Ouest de la France)<br>
+                    • Prise en main à distance via TeamViewer<br>
+                    • Maintenance et dépannage du parc informatique</p>
+                </div>
+                <div class="timeline-dot"></div>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-content">
+                    <h3>Septembre 2023 - Juillet 2024 | Paritel</h3>
+                    <p><strong>Technicien Support (1ère année BTS SIO)</strong></p>
+                    <p>• Tests de lignes Orange<br>
+                    • Réparation d'alarmes via logiciel Power Manager<br>
+                    • Gestion des caméras via RXCamView<br>
+                    • Support utilisateur sur outil de ticketing<br>
+                    • Maintenance et résolution d'incidents techniques</p>
+                </div>
+                <div class="timeline-dot"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Veille Technologique -->
+    <section id="veille" class="section">
+        <h2 class="section-title">Veille Technologique</h2>
+        <div class="about-container">
+            <div class="about-card">
+                <div class="about-icon">📡</div>
+                <h3>Suivi de l'Actualité IT</h3>
+                <p class="about-text">
+                    Je maintiens une veille technologique active pour rester informé des dernières innovations en matière de cybersécurité, d'infrastructure réseau et de technologies émergentes. Mon principal canal d'information est <a href="https://www.zdnet.fr/" target="_blank" style="color: #00ff88; text-decoration: none; border-bottom: 1px solid #00ff88; transition: all 0.3s ease;">ZDNET</a>, une référence en actualité business et technologies pour les professionnels de l'IT.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Tableau de Veille -->
+    <section id="tableau-veille" class="section">
+        <h2 class="section-title">Tableau de Veille Technologique</h2>
+        <div class="about-container">
+            <div class="about-card" style="max-width: 800px; margin: 0 auto;">
+                <div class="about-icon">📊</div>
+                <h3>Mes Recherches et Analyses</h3>
+                <p class="about-text" style="text-align: center; margin-bottom: 2rem;">
+                    Découvrez mon tableau de veille technologique où je répertorie et analyse les actualités importantes du monde IT, de la cybersécurité et des infrastructures réseau.
+                </p>
+                <div style="text-align: center;">
+                    <a href="https://docs.google.com/spreadsheets/d/1PYfG_wdtm_rrbBW_4Rd6X3xQ1K_UUDbD/edit?gid=478715316#gid=478715316" target="_blank" class="cta-button" style="display: inline-block; font-size: 1.1rem;">
+                        📈 Consulter mon tableau de veille
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact -->
+    <section id="contact" class="section">
+        <h2 class="section-title">Me Contacter</h2>
+        <div class="contact-form">
+            <form id="contactForm">
+                <div class="form-group">
+                    <input type="text" id="name" placeholder="Votre nom" required>
+                </div>
+                <div class="form-group">
+                    <input type="email" id="email" placeholder="Votre email" required>
+                </div>
+                <div class="form-group">
+                    <textarea id="message" placeholder="Votre message" rows="6" required></textarea>
+                </div>
+                <button type="submit" class="cta-button">Envoyer le message</button>
+            </form>
+            <div id="formStatus" style="margin-top: 1rem; text-align: center; display: none;"></div>
+        </div>
+        <div class="contact-info" style="margin-top: 3rem; text-align: center;">
+            <p style="font-size: 1.1rem; color: #a0a0a0;">Ou contactez-moi directement :</p>
+            <a href="mailto:aboubcarkone@gmail.com" class="contact-link">
+                📧 aboubcarkone@gmail.com
+            </a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <p>&copy; 2024 Aboubacar Kone - Portfolio BTS SIO SISR | Tous droits réservés</p>
+    </footer>
+
+    <script>
+        // Effet parallaxe sur le scroll
+        window.addEventListener('scroll', () => {
+            const scrolled = window.pageYOffset;
+            const rate = scrolled * -0.5;
+            document.querySelector('.hero').style.transform = `translateY(${rate}px)`;
+        });
+
+        // Animation des particules
+        function createParticles() {
+            const particlesContainer = document.querySelector('.particles');
+            const particleCount = 50;
+
+            for (let i = 0; i < particleCount; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'particle';
+                particle.style.left = Math.random() * 100 + '%';
+                particle.style.animationDelay = Math.random() * 6 + 's';
+                particle.style.animationDuration = (Math.random() * 3 + 3) + 's';
+                particlesContainer.appendChild(particle);
+            }
+        }
+
+        // Smooth scroll pour les liens de navigation
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                e.stopPropagation();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    const navbarHeight = document.querySelector('.navbar').offsetHeight;
+                    const targetPosition = target.offsetTop - navbarHeight;
+                    window.scrollTo({
+                        top: targetPosition,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+
+        // Animation d'apparition des éléments au scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        // Observer tous les éléments avec animation
+        document.querySelectorAll('.skill-card, .project-card, .timeline-content').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(20px)';
+            el.style.transition = 'all 0.6s ease';
+            observer.observe(el);
+        });
+
+        // Initialisation
+        document.addEventListener('DOMContentLoaded', () => {
+            createParticles();
+            
+            // Gestion du formulaire de contact
+            const contactForm = document.getElementById('contactForm');
+            const formStatus = document.getElementById('formStatus');
+            
+            contactForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                const name = document.getElementById('name').value;
+                const email = document.getElementById('email').value;
+                const message = document.getElementById('message').value;
+                
+                // Création du lien mailto avec les informations
+                const subject = encodeURIComponent(`Message de ${name} - Portfolio`);
+                const body = encodeURIComponent(`Nom: ${name}\nEmail: ${email}\n\nMessage:\n${message}`);
+                const mailtoLink = `mailto:aboubcarkone@gmail.com?subject=${subject}&body=${body}`;
+                
+                // Ouvrir le client email
+                window.location.href = mailtoLink;
+                
+                // Afficher un message de confirmation
+                formStatus.style.display = 'block';
+                formStatus.style.color = '#00ff88';
+                formStatus.textContent = '✓ Votre client email va s\'ouvrir. Pensez à envoyer le message !';
+                
+                // Réinitialiser le formulaire
+                setTimeout(() => {
+                    contactForm.reset();
+                    setTimeout(() => {
+                        formStatus.style.display = 'none';
+                    }, 3000);
+                }, 1000);
+            });
+        });
+
+        // Navbar transparente au scroll
+        window.addEventListener('scroll', () => {
+            const navbar = document.querySelector('.navbar');
+            if (window.scrollY > 100) {
+                navbar.style.background = 'rgba(10, 14, 39, 0.98)';
+            } else {
+                navbar.style.background = 'rgba(10, 14, 39, 0.95)';
+            }
+        });
+    </script>
+</body>
+</html>
