@@ -360,58 +360,27 @@
 
         /* Animations */
         @keyframes slideUp {
-            from {
-                opacity: 0;
-                transform: translateY(50px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
+            from { opacity: 0; transform: translateY(50px); }
+            to { opacity: 1; transform: translateY(0); }
         }
 
         @keyframes fadeIn {
-            from {
-                opacity: 0;
-            }
-            to {
-                opacity: 1;
-            }
+            from { opacity: 0; }
+            to { opacity: 1; }
         }
 
         @keyframes float {
-            from {
-                transform: translateY(100vh) rotate(0deg);
-                opacity: 1;
-            }
-            to {
-                transform: translateY(-100px) rotate(360deg);
-                opacity: 0;
-            }
+            from { transform: translateY(100vh) rotate(0deg); opacity: 1; }
+            to { transform: translateY(-100px) rotate(360deg); opacity: 0; }
         }
 
         /* Responsive */
         @media (max-width: 768px) {
-            .hero h1 {
-                font-size: 2.5rem;
-            }
-            
-            .nav-links {
-                display: none;
-            }
-            
-            .timeline::before {
-                left: 20px;
-            }
-            
-            .timeline-content {
-                width: calc(100% - 60px);
-                margin-left: 60px !important;
-            }
-            
-            .timeline-dot {
-                left: 20px;
-            }
+            .hero h1 { font-size: 2.5rem; }
+            .nav-links { display: none; }
+            .timeline::before { left: 20px; }
+            .timeline-content { width: calc(100% - 60px); margin-left: 60px !important; }
+            .timeline-dot { left: 20px; }
         }
 
         /* À propos styles */
@@ -445,12 +414,8 @@
         }
 
         @keyframes float-icon {
-            0%, 100% {
-                transform: translateY(0);
-            }
-            50% {
-                transform: translateY(-10px);
-            }
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
         }
 
         .about-card h3 {
@@ -468,9 +433,308 @@
         }
 
         @media (max-width: 768px) {
-            .about-container {
-                grid-template-columns: 1fr;
-            }
+            .about-container { grid-template-columns: 1fr; }
+        }
+
+        /* =============================================
+           VEILLE TECHNOLOGIQUE - Styles RSS
+        ============================================= */
+        .veille-wrapper {
+            background: linear-gradient(145deg, rgba(255,255,255,0.07), rgba(255,255,255,0.03));
+            border: 1px solid rgba(0, 212, 255, 0.3);
+            border-radius: 20px;
+            padding: 2rem;
+            backdrop-filter: blur(10px);
+            margin-top: 2rem;
+        }
+
+        .vt-header-bar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 1.5rem;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+
+        .vt-title-bar {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: #00d4ff;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .vt-live-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: #00ff88;
+            animation: vt-pulse 2s infinite;
+            flex-shrink: 0;
+        }
+
+        @keyframes vt-pulse {
+            0%,100% { opacity: 1; box-shadow: 0 0 6px #00ff88; }
+            50% { opacity: 0.4; box-shadow: none; }
+        }
+
+        .vt-status-text {
+            font-size: 0.8rem;
+            color: #a0a0a0;
+            margin-left: 4px;
+        }
+
+        .vt-refresh-btn {
+            padding: 0.5rem 1.2rem;
+            background: rgba(0, 212, 255, 0.1);
+            border: 1px solid rgba(0, 212, 255, 0.4);
+            border-radius: 25px;
+            color: #00d4ff;
+            font-size: 0.85rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .vt-refresh-btn:hover {
+            background: rgba(0, 212, 255, 0.2);
+            box-shadow: 0 0 12px rgba(0, 212, 255, 0.3);
+        }
+
+        .vt-refresh-btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        .vt-stats-row {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+            gap: 10px;
+            margin-bottom: 1.5rem;
+        }
+
+        .vt-stat-box {
+            background: rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(0, 212, 255, 0.2);
+            border-radius: 12px;
+            padding: 0.8rem 1rem;
+            text-align: center;
+        }
+
+        .vt-stat-num {
+            font-size: 1.6rem;
+            font-weight: 700;
+            color: #00d4ff;
+        }
+
+        .vt-stat-lbl {
+            font-size: 0.72rem;
+            color: #a0a0a0;
+            margin-top: 2px;
+            text-transform: uppercase;
+            letter-spacing: 0.04em;
+        }
+
+        .vt-sources-bar {
+            margin-bottom: 1.5rem;
+        }
+
+        .vt-sources-label {
+            font-size: 0.75rem;
+            color: #a0a0a0;
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+            margin-bottom: 8px;
+        }
+
+        .vt-sources-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .vt-src-pill {
+            font-size: 0.78rem;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            padding: 4px 12px;
+            border: 1px solid rgba(255,255,255,0.15);
+            border-radius: 20px;
+            color: #c0c0c0;
+        }
+
+        .vt-src-color {
+            width: 7px;
+            height: 7px;
+            border-radius: 50%;
+        }
+
+        .vt-filters-row {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+            margin-bottom: 1.5rem;
+        }
+
+        .vt-filter-chip {
+            font-size: 0.8rem;
+            padding: 5px 14px;
+            border-radius: 20px;
+            border: 1px solid rgba(0, 212, 255, 0.3);
+            background: transparent;
+            color: #a0a0a0;
+            cursor: pointer;
+            transition: all 0.25s ease;
+            user-select: none;
+        }
+
+        .vt-filter-chip:hover {
+            border-color: #00d4ff;
+            color: #00d4ff;
+        }
+
+        .vt-filter-chip.active {
+            background: rgba(0, 212, 255, 0.2);
+            border-color: #00d4ff;
+            color: #00d4ff;
+            box-shadow: 0 0 10px rgba(0, 212, 255, 0.2);
+        }
+
+        .vt-articles-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 14px;
+        }
+
+        .vt-article-card {
+            background: rgba(0, 0, 0, 0.35);
+            border: 1px solid rgba(0, 212, 255, 0.2);
+            border-radius: 14px;
+            padding: 1.2rem 1.4rem;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .vt-article-card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: -100%;
+            width: 100%; height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(0, 212, 255, 0.06), transparent);
+            transition: left 0.5s ease;
+        }
+
+        .vt-article-card:hover::before { left: 100%; }
+
+        .vt-article-card:hover {
+            border-color: rgba(0, 212, 255, 0.5);
+            transform: translateY(-4px);
+            box-shadow: 0 12px 30px rgba(0, 212, 255, 0.12);
+        }
+
+        .vt-card-top {
+            display: flex;
+            align-items: flex-start;
+            justify-content: space-between;
+            gap: 8px;
+            margin-bottom: 8px;
+        }
+
+        .vt-article-title {
+            font-size: 0.92rem;
+            font-weight: 600;
+            color: #e8e8e8;
+            line-height: 1.45;
+            flex: 1;
+        }
+
+        .vt-badge {
+            font-size: 0.7rem;
+            font-weight: 600;
+            padding: 3px 9px;
+            border-radius: 12px;
+            white-space: nowrap;
+            flex-shrink: 0;
+        }
+
+        .badge-Sécurité  { background: rgba(220,50,50,0.25);  color: #ff7070; border: 1px solid rgba(220,50,50,0.4);  }
+        .badge-Réseau    { background: rgba(0,180,255,0.2);   color: #60d0ff; border: 1px solid rgba(0,180,255,0.35); }
+        .badge-Cloud     { background: rgba(50,200,100,0.2);  color: #70e080; border: 1px solid rgba(50,200,100,0.35);}
+        .badge-IA        { background: rgba(160,80,255,0.2);  color: #c080ff; border: 1px solid rgba(160,80,255,0.35);}
+        .badge-Système   { background: rgba(255,180,0,0.2);   color: #ffc040; border: 1px solid rgba(255,180,0,0.35); }
+
+        .vt-card-meta {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-top: 6px;
+            font-size: 0.75rem;
+            color: #808080;
+        }
+
+        .vt-card-meta span { display: flex; align-items: center; gap: 3px; }
+
+        .vt-excerpt {
+            font-size: 0.8rem;
+            color: #909090;
+            line-height: 1.6;
+            margin-top: 8px;
+            display: -webkit-box;
+            -webkit-line-clamp: 3;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+
+        .vt-read-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            font-size: 0.78rem;
+            color: #00d4ff;
+            text-decoration: none;
+            margin-top: 10px;
+            transition: all 0.2s;
+        }
+
+        .vt-read-link:hover {
+            color: #00ff88;
+            text-decoration: underline;
+        }
+
+        .vt-skeleton {
+            background: linear-gradient(90deg, rgba(255,255,255,0.05) 25%, rgba(255,255,255,0.1) 50%, rgba(255,255,255,0.05) 75%);
+            background-size: 200% 100%;
+            border-radius: 14px;
+            height: 150px;
+            animation: vt-shimmer 1.5s infinite;
+        }
+
+        @keyframes vt-shimmer {
+            0% { background-position: 200% 0; }
+            100% { background-position: -200% 0; }
+        }
+
+        .vt-empty-msg {
+            text-align: center;
+            padding: 3rem 1rem;
+            color: #606060;
+            font-size: 0.95rem;
+        }
+
+        .vt-tableau-link {
+            text-align: center;
+            margin-top: 2rem;
+        }
+
+        @media (max-width: 768px) {
+            .vt-articles-grid { grid-template-columns: 1fr; }
+            .vt-stats-row { grid-template-columns: repeat(2, 1fr); }
         }
     </style>
 </head>
@@ -486,7 +750,7 @@
                 <li><a href="#projets">Projets</a></li>
                 <li><a href="#parcours">Parcours</a></li>
                 <li><a href="#veille">Veille Technologique</a></li>
-                <li><a href="#Tableau de Synthese">Tableau de Synthese </a></li>
+                
                 <li><a href="#contact">Contact</a></li>
             </ul>
         </div>
@@ -570,7 +834,6 @@
     <!-- Projets -->
     <section id="projets" class="section">
         <h2 class="section-title">Projets Réalisés en Entreprise</h2>
-        
         <div class="projects-grid">
             <div class="project-card">
                 <h3>Serveur de Messagerie avec Active Directory</h3>
@@ -587,7 +850,6 @@
                     </a>
                 </div>
             </div>
-            
             <div class="project-card">
                 <h3>Cluster Haute Disponibilité Linux Heartbeat</h3>
                 <p>Mise en place d'un cluster de haute disponibilité avec Linux Heartbeat. Configuration de 2 nœuds + 1 client, détection automatique de panne, surveillance de vie (liveness) et basculement automatique des services Apache2.</p>
@@ -603,7 +865,6 @@
                     </a>
                 </div>
             </div>
-
             <div class="project-card">
                 <h3>Déploiement Multi-Sites</h3>
                 <p>Masterisation et déploiement de PC sur l'ensemble des sites de Gagneraud Construction (Normandie, IDF, Est et Ouest France). Support à distance via TeamViewer et maintenance du parc informatique.</p>
@@ -611,7 +872,6 @@
                 <div class="project-tag">TeamViewer</div>
                 <div class="project-tag">Support Multi-Sites</div>
             </div>
-            
             <div class="project-card">
                 <h3>Support Télécom & Sécurité</h3>
                 <p>Chez Paritel : tests de lignes Orange, réparation d'alarmes via Power Manager, gestion de caméras RXCamView et support utilisateur via système de ticketing.</p>
@@ -653,36 +913,86 @@
         </div>
     </section>
 
-    <!-- Veille Technologique -->
+    <!-- =============================================
+         VEILLE TECHNOLOGIQUE - Section unifiée avec RSS
+    ============================================= -->
     <section id="veille" class="section">
         <h2 class="section-title">Veille Technologique</h2>
-        <div class="about-container">
-            <div class="about-card">
-                <div class="about-icon">📡</div>
-                <h3>Suivi de l'Actualité IT</h3>
-                <p class="about-text">
-                    Je maintiens une veille technologique active pour rester informé des dernières innovations en matière de cybersécurité, d'infrastructure réseau et de technologies émergentes. Mon principal canal d'information est <a href="https://www.zdnet.fr/" target="_blank" style="color: #00ff88; text-decoration: none; border-bottom: 1px solid #00ff88; transition: all 0.3s ease;">ZDNET</a>, une référence en actualité business et technologies pour les professionnels de l'IT.
-                </p>
-            </div>
-        </div>
-    </section>
 
-    <!-- Tableau de Synthese -->
-    <section id="c" class="section">
-        <h2 class="section-title">Tableau de Synthese </h2>
-        <div class="about-container">
-            <div class="about-card" style="max-width: 800px; margin: 0 auto;">
-                <div class="about-icon">📊</div>
-                <h3>Mes Recherches et Analyses</h3>
-                <p class="about-text" style="text-align: center; margin-bottom: 2rem;">
-                    Découvrez mon tableau de Synthese où j'ai fait mes activitées au quotidien durant mes deux années en entreprise et à l'ecole.
-                </p>
-                <div style="text-align: center;">
-                    <a href="https://docs.google.com/spreadsheets/d/1PYfG_wdtm_rrbBW_4Rd6X3xQ1K_UUDbD/edit?gid=478715316#gid=478715316" target="_blank" class="cta-button" style="display: inline-block; font-size: 1.1rem;">
-                        📈 Consulter mon tableau de Synthese 
-                    </a>
+        <div class="veille-wrapper">
+
+            <!-- En-tête du dashboard -->
+            <div class="vt-header-bar">
+                <div>
+                    <div class="vt-title-bar">
+                        <span class="vt-live-dot"></span>
+                        Flux RSS en direct
+                        <span class="vt-status-text" id="vt-status">Chargement...</span>
+                    </div>
+                </div>
+                <button class="vt-refresh-btn" id="vt-refresh-btn" onclick="vtLoadFeeds()">
+                    🔄 Actualiser
+                </button>
+            </div>
+
+            <!-- Compteurs -->
+            <div class="vt-stats-row" id="vt-stats" style="display:none;">
+                <div class="vt-stat-box">
+                    <div class="vt-stat-num" id="vt-stat-total">0</div>
+                    <div class="vt-stat-lbl">Articles récupérés</div>
+                </div>
+                <div class="vt-stat-box">
+                    <div class="vt-stat-num" id="vt-stat-secu">0</div>
+                    <div class="vt-stat-lbl">Cybersécurité</div>
+                </div>
+                <div class="vt-stat-box">
+                    <div class="vt-stat-num" id="vt-stat-ia">0</div>
+                    <div class="vt-stat-lbl">IA & Cloud</div>
+                </div>
+                <div class="vt-stat-box">
+                    <div class="vt-stat-num" id="vt-stat-today">0</div>
+                    <div class="vt-stat-lbl">Aujourd'hui</div>
                 </div>
             </div>
+
+            <!-- Sources -->
+            <div class="vt-sources-bar">
+                <div class="vt-sources-label">Sources actives</div>
+                <div class="vt-sources-list">
+                    <div class="vt-src-pill"><span class="vt-src-color" style="background:#378ADD;"></span>ZDNet FR</div>
+                    <div class="vt-src-pill"><span class="vt-src-color" style="background:#3B6D11;"></span>LeMagIT</div>
+                    <div class="vt-src-pill"><span class="vt-src-color" style="background:#E24B4A;"></span>CERT-FR</div>
+                    <div class="vt-src-pill"><span class="vt-src-color" style="background:#7F77DD;"></span>01net</div>
+                    <div class="vt-src-pill"><span class="vt-src-color" style="background:#BA7517;"></span>Silicon.fr</div>
+                </div>
+            </div>
+
+            <!-- Filtres par catégorie -->
+            <div class="vt-filters-row">
+                <div class="vt-filter-chip active" data-cat="all" onclick="vtFilter(this)">Tout voir</div>
+                <div class="vt-filter-chip" data-cat="Sécurité" onclick="vtFilter(this)">🔒 Cybersécurité</div>
+                <div class="vt-filter-chip" data-cat="Réseau" onclick="vtFilter(this)">🌐 Réseau</div>
+                <div class="vt-filter-chip" data-cat="Cloud" onclick="vtFilter(this)">☁️ Cloud</div>
+                <div class="vt-filter-chip" data-cat="IA" onclick="vtFilter(this)">🤖 IA</div>
+                <div class="vt-filter-chip" data-cat="Système" onclick="vtFilter(this)">🖥️ Système</div>
+            </div>
+
+            <!-- Grille d'articles -->
+            <div class="vt-articles-grid" id="vt-grid">
+                <div class="vt-skeleton"></div>
+                <div class="vt-skeleton"></div>
+                <div class="vt-skeleton"></div>
+                <div class="vt-skeleton"></div>
+            </div>
+
+            <!-- Lien tableau de synthèse -->
+            <div class="vt-tableau-link">
+                <a href="https://docs.google.com/spreadsheets/d/1PYfG_wdtm_rrbBW_4Rd6X3xQ1K_UUDbD/edit?gid=478715316#gid=478715316"
+                   target="_blank" class="cta-button" style="font-size: 1rem;">
+                    📈 Consulter mon tableau de Synthèse
+                </a>
+            </div>
+
         </div>
     </section>
 
@@ -718,7 +1028,11 @@
     </footer>
 
     <script>
-        // Effet parallaxe sur le scroll
+        /* =============================================
+           JAVASCRIPT GÉNÉRAL DU PORTFOLIO
+        ============================================= */
+
+        // Effet parallaxe au scroll
         window.addEventListener('scroll', () => {
             const scrolled = window.pageYOffset;
             const rate = scrolled * -0.5;
@@ -728,9 +1042,7 @@
         // Animation des particules
         function createParticles() {
             const particlesContainer = document.querySelector('.particles');
-            const particleCount = 50;
-
-            for (let i = 0; i < particleCount; i++) {
+            for (let i = 0; i < 50; i++) {
                 const particle = document.createElement('div');
                 particle.className = 'particle';
                 particle.style.left = Math.random() * 100 + '%';
@@ -740,7 +1052,7 @@
             }
         }
 
-        // Smooth scroll pour les liens de navigation
+        // Smooth scroll
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
                 e.preventDefault();
@@ -748,21 +1060,12 @@
                 const target = document.querySelector(this.getAttribute('href'));
                 if (target) {
                     const navbarHeight = document.querySelector('.navbar').offsetHeight;
-                    const targetPosition = target.offsetTop - navbarHeight;
-                    window.scrollTo({
-                        top: targetPosition,
-                        behavior: 'smooth'
-                    });
+                    window.scrollTo({ top: target.offsetTop - navbarHeight, behavior: 'smooth' });
                 }
             });
         });
 
-        // Animation d'apparition des éléments au scroll
-        const observerOptions = {
-            threshold: 0.1,
-            rootMargin: '0px 0px -50px 0px'
-        };
-
+        // Animation d'apparition au scroll
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
@@ -770,9 +1073,8 @@
                     entry.target.style.transform = 'translateY(0)';
                 }
             });
-        }, observerOptions);
+        }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
 
-        // Observer tous les éléments avec animation
         document.querySelectorAll('.skill-card, .project-card, .timeline-content').forEach(el => {
             el.style.opacity = '0';
             el.style.transform = 'translateY(20px)';
@@ -780,53 +1082,177 @@
             observer.observe(el);
         });
 
-        // Initialisation
+        // Navbar scroll
+        window.addEventListener('scroll', () => {
+            const navbar = document.querySelector('.navbar');
+            navbar.style.background = window.scrollY > 100
+                ? 'rgba(10, 14, 39, 0.98)'
+                : 'rgba(10, 14, 39, 0.95)';
+        });
+
+        // Formulaire de contact
         document.addEventListener('DOMContentLoaded', () => {
             createParticles();
-            
-            // Gestion du formulaire de contact
+
             const contactForm = document.getElementById('contactForm');
-            const formStatus = document.getElementById('formStatus');
-            
+            const formStatus  = document.getElementById('formStatus');
+
             contactForm.addEventListener('submit', function(e) {
                 e.preventDefault();
-                
-                const name = document.getElementById('name').value;
-                const email = document.getElementById('email').value;
+                const name    = document.getElementById('name').value;
+                const email   = document.getElementById('email').value;
                 const message = document.getElementById('message').value;
-                
-                // Création du lien mailto avec les informations
                 const subject = encodeURIComponent(`Message de ${name} - Portfolio`);
-                const body = encodeURIComponent(`Nom: ${name}\nEmail: ${email}\n\nMessage:\n${message}`);
-                const mailtoLink = `mailto:aboubcarkone@gmail.com?subject=${subject}&body=${body}`;
-                
-                // Ouvrir le client email
-                window.location.href = mailtoLink;
-                
-                // Afficher un message de confirmation
+                const body    = encodeURIComponent(`Nom: ${name}\nEmail: ${email}\n\nMessage:\n${message}`);
+                window.location.href = `mailto:aboubcarkone@gmail.com?subject=${subject}&body=${body}`;
                 formStatus.style.display = 'block';
-                formStatus.style.color = '#00ff88';
-                formStatus.textContent = '✓ Votre client email va s\'ouvrir. Pensez à envoyer le message !';
-                
-                // Réinitialiser le formulaire
+                formStatus.style.color   = '#00ff88';
+                formStatus.textContent   = "✓ Votre client email va s'ouvrir. Pensez à envoyer le message !";
                 setTimeout(() => {
                     contactForm.reset();
-                    setTimeout(() => {
-                        formStatus.style.display = 'none';
-                    }, 3000);
+                    setTimeout(() => { formStatus.style.display = 'none'; }, 3000);
                 }, 1000);
             });
         });
 
-        // Navbar transparente au scroll
-        window.addEventListener('scroll', () => {
-            const navbar = document.querySelector('.navbar');
-            if (window.scrollY > 100) {
-                navbar.style.background = 'rgba(10, 14, 39, 0.98)';
-            } else {
-                navbar.style.background = 'rgba(10, 14, 39, 0.95)';
+        /* =============================================
+           VEILLE TECHNOLOGIQUE - Flux RSS
+        ============================================= */
+
+        const VT_FEEDS = [
+            { name: 'ZDNet FR',    url: 'https://www.zdnet.fr/feeds/rss/' },
+            { name: 'LeMagIT',     url: 'https://www.lemagit.fr/rss/ToutLesMagazines.xml' },
+            { name: '01net',       url: 'https://www.01net.com/rss.xml' },
+            { name: 'Silicon.fr',  url: 'https://www.silicon.fr/feed' },
+            { name: 'CERT-FR',     url: 'https://www.cert.ssi.gouv.fr/feed/' }
+        ];
+
+        const VT_PROXY = 'https://api.rss2json.com/v1/api.json?rss_url=';
+
+        const VT_KEYWORDS = {
+            'Sécurité': ['sécurité','cyber','hack','vulnérabil','ransomware','phishing','malware','chiffrement','firewall','menace','attaque','faille','patch','CVE','CERT','ANSSI','zero-day'],
+            'Réseau':   ['réseau','VPN','firewall','routage','VLAN','Cisco','switch','pare-feu','DNS','IP','TCP','WiFi','5G','fibre'],
+            'Cloud':    ['cloud','AWS','Azure','GCP','kubernetes','docker','conteneur','SaaS','serverless','microservice','hybride'],
+            'IA':       ['intelligence artificielle','IA','machine learning','deep learning','LLM','GPT','neural','algorithme','automatisation','ChatGPT'],
+            'Système':  ['windows','linux','serveur','active directory','déploiement','virtualisation','VMware','Hyper-V','Ubuntu','RedHat','mise à jour','patch']
+        };
+
+        let vtArticles = [];
+        let vtCurrentFilter = 'all';
+
+        function vtCategorize(text) {
+            const t = text.toLowerCase();
+            for (const [cat, kw] of Object.entries(VT_KEYWORDS)) {
+                if (kw.some(k => t.includes(k.toLowerCase()))) return cat;
             }
-        });
+            return 'Système';
+        }
+
+        function vtTimeAgo(dateStr) {
+            const d = new Date(dateStr);
+            if (isNaN(d)) return '';
+            const diff = (Date.now() - d) / 1000;
+            if (diff < 3600)   return Math.floor(diff / 60) + ' min';
+            if (diff < 86400)  return Math.floor(diff / 3600) + 'h';
+            if (diff < 172800) return 'Hier';
+            return d.toLocaleDateString('fr-FR', { day: 'numeric', month: 'short' });
+        }
+
+        function vtIsToday(dateStr) {
+            const d = new Date(dateStr);
+            return !isNaN(d) && d.toDateString() === new Date().toDateString();
+        }
+
+        function vtRenderCards(articles) {
+            const grid = document.getElementById('vt-grid');
+            const filtered = vtCurrentFilter === 'all'
+                ? articles
+                : articles.filter(a => a.cat === vtCurrentFilter);
+
+            if (!filtered.length) {
+                grid.innerHTML = '<div class="vt-empty-msg">Aucun article dans cette catégorie pour l\'instant.</div>';
+                return;
+            }
+
+            grid.innerHTML = filtered.map(a => `
+                <div class="vt-article-card">
+                    <div class="vt-card-top">
+                        <div class="vt-article-title">${a.title}</div>
+                        <span class="vt-badge badge-${a.cat}">${a.cat}</span>
+                    </div>
+                    <div class="vt-card-meta">
+                        <span>📰 ${a.source}</span>
+                        <span style="color:#404040;">·</span>
+                        <span>🕐 ${vtTimeAgo(a.date)}</span>
+                    </div>
+                    ${a.excerpt ? `<div class="vt-excerpt">${a.excerpt}</div>` : ''}
+                    <a class="vt-read-link" href="${a.url}" target="_blank">Lire l'article ↗</a>
+                </div>
+            `).join('');
+        }
+
+        function vtUpdateStats(articles) {
+            document.getElementById('vt-stats').style.display = '';
+            document.getElementById('vt-stat-total').textContent = articles.length;
+            document.getElementById('vt-stat-secu').textContent  = articles.filter(a => a.cat === 'Sécurité').length;
+            document.getElementById('vt-stat-ia').textContent    = articles.filter(a => a.cat === 'IA' || a.cat === 'Cloud').length;
+            document.getElementById('vt-stat-today').textContent = articles.filter(a => vtIsToday(a.date)).length;
+        }
+
+        async function vtFetchFeed(feed) {
+            try {
+                const r = await fetch(`${VT_PROXY}${encodeURIComponent(feed.url)}&count=8`);
+                const data = await r.json();
+                if (!data.items) return [];
+                return data.items.map(item => ({
+                    title:   item.title || '',
+                    url:     item.link  || '#',
+                    source:  feed.name,
+                    date:    item.pubDate || '',
+                    excerpt: item.description
+                        ? item.description.replace(/<[^>]*>/g, '').slice(0, 160).trim()
+                        : '',
+                    cat: vtCategorize((item.title || '') + ' ' + (item.description || ''))
+                }));
+            } catch { return []; }
+        }
+
+        async function vtLoadFeeds() {
+            const btn        = document.getElementById('vt-refresh-btn');
+            const statusEl   = document.getElementById('vt-status');
+            const grid       = document.getElementById('vt-grid');
+
+            btn.disabled = true;
+            grid.innerHTML = '<div class="vt-skeleton"></div><div class="vt-skeleton"></div><div class="vt-skeleton"></div><div class="vt-skeleton"></div>';
+            statusEl.textContent = '— Récupération en cours…';
+
+            const results = await Promise.allSettled(VT_FEEDS.map(vtFetchFeed));
+            vtArticles = results.flatMap(r => r.status === 'fulfilled' ? r.value : []);
+            vtArticles.sort((a, b) => new Date(b.date) - new Date(a.date));
+
+            if (!vtArticles.length) {
+                grid.innerHTML = '<div class="vt-empty-msg">⚠️ Impossible de charger les flux. Vérifiez votre connexion.</div>';
+                statusEl.textContent = '— Erreur de chargement';
+            } else {
+                vtRenderCards(vtArticles);
+                vtUpdateStats(vtArticles);
+                const now = new Date().toLocaleTimeString('fr-FR', { hour: '2-digit', minute: '2-digit' });
+                statusEl.textContent = `— Mis à jour à ${now} · ${vtArticles.length} articles`;
+            }
+            btn.disabled = false;
+        }
+
+        function vtFilter(el) {
+            document.querySelectorAll('.vt-filter-chip').forEach(c => c.classList.remove('active'));
+            el.classList.add('active');
+            vtCurrentFilter = el.dataset.cat;
+            vtRenderCards(vtArticles);
+        }
+
+        // Chargement initial + auto-refresh toutes les 5 minutes
+        vtLoadFeeds();
+        setInterval(vtLoadFeeds, 5 * 60 * 1000);
     </script>
 </body>
 </html>
+
