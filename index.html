@@ -914,78 +914,86 @@
         </div>
     </section>
 
-    <!-- =============================================
-         VEILLE TECHNOLOGIQUE - Section unifiée avec RSS
-    ============================================= -->
-    <section id="veille" class="section">
-        <h2 class="section-title">Veille Technologique</h2>
+    <!-- VEILLE TECHNOLOGIQUE VERSION BTS (100% fiable GitHub) -->
+<section id="veille" class="section">
+  <h2 class="section-title">Veille Technologique</h2>
+  <div id="rss-feed" class="rss-container"></div>
+</section>
 
-        <div class="veille-wrapper">
+<script>
+const VT_FEEDS = [
+  { name: 'ZDNet', url: 'https://www.zdnet.fr/feeds/rss/' },
+  { name: 'Le Monde Informatique', url: 'https://www.lemondeinformatique.fr/flux-rss/thematique/toutes-les-actualites/rss.xml' }
+];
 
-            <!-- En-tête du dashboard -->
-            <div class="vt-header-bar">
-                <div>
-                    <div class="vt-title-bar">
-                        <span class="vt-live-dot"></span>
-                        Flux RSS en direct
-                        <span class="vt-status-text" id="vt-status">Chargement...</span>
-                    </div>
-                </div>
-                <button class="vt-refresh-btn" id="vt-refresh-btn" onclick="vtLoadFeeds()">
-                    🔄 Actualiser
-                </button>
-            </div>
+const VT_PROXY = 'https://api.allorigins.win/get?url=';
 
-            <!-- Compteurs -->
-            <div class="vt-stats-row" id="vt-stats" style="display:none;">
-                <div class="vt-stat-box">
-                    <div class="vt-stat-num" id="vt-stat-total">0</div>
-                    <div class="vt-stat-lbl">Articles récupérés</div>
-                </div>
-                <div class="vt-stat-box">
-                    <div class="vt-stat-num" id="vt-stat-secu">0</div>
-                    <div class="vt-stat-lbl">Cybersécurité</div>
-                </div>
-                <div class="vt-stat-box">
-                    <div class="vt-stat-num" id="vt-stat-ia">0</div>
-                    <div class="vt-stat-lbl">IA & Cloud</div>
-                </div>
-                <div class="vt-stat-box">
-                    <div class="vt-stat-num" id="vt-stat-today">0</div>
-                    <div class="vt-stat-lbl">Aujourd'hui</div>
-                </div>
-            </div>
+async function loadRSS() {
+  const container = document.getElementById('rss-feed');
+  container.innerHTML = '<p>Chargement des articles...</p>';
 
-            <!-- Sources -->
-            <div class="vt-sources-bar">
-                <div class="vt-sources-label">Sources actives</div>
-                <div class="vt-sources-list">
-                    <div class="vt-src-pill"><span class="vt-src-color" style="background:#378ADD;"></span>ZDNet FR</div>
-                    <div class="vt-src-pill"><span class="vt-src-color" style="background:#3B6D11;"></span>LeMagIT</div>
-                    <div class="vt-src-pill"><span class="vt-src-color" style="background:#E24B4A;"></span>CERT-FR</div>
-                    <div class="vt-src-pill"><span class="vt-src-color" style="background:#7F77DD;"></span>01net</div>
-                    <div class="vt-src-pill"><span class="vt-src-color" style="background:#BA7517;"></span>Silicon.fr</div>
-                </div>
-            </div>
+  let articles = [];
 
-            <!-- Filtres par catégorie -->
-            <div class="vt-filters-row">
-                <div class="vt-filter-chip active" data-cat="all" onclick="vtFilter(this)">Tout voir</div>
-                <div class="vt-filter-chip" data-cat="Sécurité" onclick="vtFilter(this)">🔒 Cybersécurité</div>
-                <div class="vt-filter-chip" data-cat="Réseau" onclick="vtFilter(this)">🌐 Réseau</div>
-                <div class="vt-filter-chip" data-cat="Cloud" onclick="vtFilter(this)">☁️ Cloud</div>
-                <div class="vt-filter-chip" data-cat="IA" onclick="vtFilter(this)">🤖 IA</div>
-                <div class="vt-filter-chip" data-cat="Système" onclick="vtFilter(this)">🖥️ Système</div>
-            </div>
+  for (const feed of VT_FEEDS) {
+    try {
+      const res = await fetch(VT_PROXY + encodeURIComponent(feed.url));
+      const data = await res.json();
 
-            <!-- Grille d'articles -->
-            <div class="vt-articles-grid" id="vt-grid">
-                <div class="vt-skeleton"></div>
-                <div class="vt-skeleton"></div>
-                <div class="vt-skeleton"></div>
-                <div class="vt-skeleton"></div>
-            </div>
+      const parser = new DOMParser();
+      const xml = parser.parseFromString(data.contents, "text/xml");
 
+      const items = xml.querySelectorAll("item");
+
+      items.forEach((item, index) => {
+        if (index < 3) {
+          articles.push({
+            title: item.querySelector("title")?.textContent,
+            link: item.querySelector("link")?.textContent,
+            date: item.querySelector("pubDate")?.textContent,
+            source: feed.name
+          });
+        }
+      });
+
+    } catch (err) {
+      console.log("Erreur flux:", err);
+    }
+  }
+
+  // Tri par date
+  articles.sort((a, b) => new Date(b.date) - new Date(a.date));
+
+  container.innerHTML = "";
+
+  if (!articles.length) {
+    container.innerHTML = "<p>Aucun article disponible.</p>";
+    return;
+  }
+
+  articles.forEach(article => {
+    const div = document.createElement("div");
+    div.className = "rss-card";
+
+    div.innerHTML = `
+      <h3>${article.title}</h3>
+      <p style="font-size:0.9em; opacity:0.7;">
+        ${new Date(article.date).toLocaleDateString()} • ${article.source}
+      </p>
+      <a href="${article.link}" target="_blank">Lire l'article</a>
+    `;
+
+    container.appendChild(div);
+  });
+}
+
+window.addEventListener('DOMContentLoaded', loadRSS);
+</script>
+
+<!-- TEXTE EXPLICATION BTS (tu peux le garder pour l'oral) -->
+<p style="margin-top:20px; font-size:0.9em; opacity:0.8; text-align:center;">
+Cette veille technologique est alimentée automatiquement via des flux RSS provenant de sites spécialisés. 
+Un proxy est utilisé pour contourner les restrictions CORS des navigateurs, notamment sur GitHub Pages.
+</p>
             <!-- Lien tableau de synthèse -->
             <div class="vt-tableau-link">
                 <a href="https://docs.google.com/spreadsheets/d/1PYfG_wdtm_rrbBW_4Rd6X3xQ1K_UUDbD/edit?gid=478715316#gid=478715316"
