@@ -374,6 +374,26 @@
             to { transform: translateY(-100px) rotate(360deg); opacity: 0; }
         }
 
+        .doc-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 0.55rem 1.2rem;
+            background: rgba(0, 212, 255, 0.12);
+            border: 1px solid rgba(0, 212, 255, 0.5);
+            border-radius: 8px;
+            color: #00d4ff;
+            text-decoration: none;
+            font-size: 0.85rem;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+        .doc-btn:hover {
+            background: rgba(0, 212, 255, 0.25);
+            box-shadow: 0 0 14px rgba(0, 212, 255, 0.35);
+            transform: translateY(-2px);
+        }
+
         /* Responsive */
         @media (max-width: 768px) {
             .hero h1 { font-size: 2.5rem; }
@@ -747,7 +767,8 @@
                 <li><a href="#accueil">Accueil</a></li>
                 <li><a href="#apropos">À propos</a></li>
                 <li><a href="#competences">Compétences</a></li>
-                <li><a href="#projets">Projets</a></li>
+                <li><a href="#projets">Projets Entreprise</a></li>
+                <li><a href="#projets-ecole">Projets École</a></li>
                 <li><a href="#parcours">Parcours</a></li>
                 <li><a href="#veille">Veille Technologique</a></li>
                 <li><a href="#contact">Contact</a></li>
@@ -834,17 +855,17 @@
     <section id="projets" class="section">
         <h2 class="section-title">Projets Réalisés en Entreprise</h2>
         <div class="projects-grid">
-            <div class="project-card">
-                <h3>Projet SASE</h3>
-                <p>Nouvelle Infrastructure</p>
-                <div class="project-tag">Global protect</div>
-                <div class="project-tag">GPO</div>
-                <div class="project-tag">Prisma</div>
-                <div class="project-tag">Itune</div>
-                
                 </div>
             </div>
-
+            <div class="project-card">
+                <h3>SASE</h3>
+                <p>Mise en place d'une nouvelle infrastructure.</p>
+                <div class="project-tag">Connect Prisma</div>
+                <div class="project-tag">Global protect</div>
+                <div class="project-tag">Intunes</div>
+                <div class="project-tag">GPO</div>
+                </div>
+            </div>
             <div class="project-card">
                 <h3>Déploiement Multi-Sites</h3>
                 <p>Masterisation et déploiement de PC sur l'ensemble des sites de Gagneraud Construction (Normandie, IDF, Est et Ouest France). Support à distance via TeamViewer et maintenance du parc informatique.</p>
@@ -971,6 +992,93 @@
                    target="_blank" class="cta-button" style="font-size: 1rem;">
                     📈 Consulter mon tableau de Synthèse
                 </a>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Projets Scolaires -->
+    <section id="projets-ecole" class="section">
+        <h2 class="section-title">Projets Réalisés à l'École</h2>
+        <div class="projects-grid">
+
+            <div class="project-card">
+                <h3>🖥️ Active Directory sous Windows Server 2019</h3>
+                <p>Mise en place d'une topologie Active Directory complète : installation des rôles AD-DS, DNS, DHCP, WDS. Configuration des OU, groupes (GG/DL), utilisateurs via scripts PowerShell, profils itinérants, GPO, mappage de lecteurs et stratégie AGDLP.</p>
+                <div class="project-tag">Windows Server 2019</div>
+                <div class="project-tag">Active Directory</div>
+                <div class="project-tag">DNS / DHCP</div>
+                <div class="project-tag">WDS</div>
+                <div class="project-tag">PowerShell</div>
+                <div class="project-tag">GPO / AGDLP</div>
+                <div style="margin-top:1.2rem;">
+                    <a href="MISE EN PLACE DE LA TOPOLOGIE ACTIVE DIRECTORY SOUS WINDOWS SERVEUR 2019 ET DU CLIENT WINDOWS  BTS.docx.pdf" target="_blank" class="doc-btn">📄 Voir le document</a>
+                </div>
+            </div>
+
+            <div class="project-card">
+                <h3>⚖️ Load Balancing avec HAProxy</h3>
+                <p>Déploiement d'un équilibreur de charge HAProxy sur Linux avec 2 serveurs web Apache2 en backend. Configuration du routage Round Robin, mise en place d'IPtables pour le firewall et SSH, configuration réseau Host-Only/NAT et tests de basculement.</p>
+                <div class="project-tag">HAProxy</div>
+                <div class="project-tag">Apache2</div>
+                <div class="project-tag">IPtables</div>
+                <div class="project-tag">Ubuntu Linux</div>
+                <div class="project-tag">Load Balancing</div>
+                <div style="margin-top:1.2rem;">
+                    <a href="HAproxy.pdf" target="_blank" class="doc-btn">📄 Voir le document</a>
+                </div>
+            </div>
+
+            <div class="project-card">
+                <h3>💓 Cluster Haute Disponibilité Linux Heartbeat</h3>
+                <p>Installation et configuration d'un cluster HA avec Linux Heartbeat sur Ubuntu 22.04 : 2 nœuds + 1 client, configuration des fichiers ha.cf, authkeys et haresources, IP virtuelle flottante, test de panne avec basculement automatique validé.</p>
+                <div class="project-tag">Linux Heartbeat</div>
+                <div class="project-tag">Haute Disponibilité</div>
+                <div class="project-tag">Apache2</div>
+                <div class="project-tag">Ubuntu 22.04</div>
+                <div class="project-tag">Failover</div>
+                <div style="margin-top:1.2rem;">
+                    <a href="Heartbeat.pdf" target="_blank" class="doc-btn">📄 Voir le document</a>
+                </div>
+            </div>
+
+            <div class="project-card">
+                <h3>🔐 Serveur Web HTTPS avec certificat SSL</h3>
+                <p>Configuration d'un serveur Apache2 avec SSL/TLS sous Ubuntu : activation des modules SSL/rewrite, génération d'un certificat auto-signé avec OpenSSL, configuration des VirtualHosts HTTP (port 80) et HTTPS (port 443) avec redirection automatique.</p>
+                <div class="project-tag">Apache2</div>
+                <div class="project-tag">OpenSSL</div>
+                <div class="project-tag">HTTPS / SSL</div>
+                <div class="project-tag">Ubuntu</div>
+                <div class="project-tag">VirtualHost</div>
+                <div style="margin-top:1.2rem;">
+                    <a href="TP HTTPS.pdf" target="_blank" class="doc-btn">📄 Voir le document</a>
+                </div>
+            </div>
+
+            <div class="project-card">
+                <h3>📊 Supervision avec Zabbix 7.2</h3>
+                <p>Déploiement complet de Zabbix 7.2 sur Ubuntu avec MySQL : installation serveur/frontend/agent, configuration des hôtes Windows et Linux, mise en place d'un script de sauvegarde automatique via cron avec rétention de 14 jours et conservation des 5 dernières sauvegardes.</p>
+                <div class="project-tag">Zabbix 7.2</div>
+                <div class="project-tag">MySQL</div>
+                <div class="project-tag">Monitoring</div>
+                <div class="project-tag">Bash / Cron</div>
+                <div class="project-tag">Sauvegarde BDD</div>
+                <div style="margin-top:1.2rem;">
+                    <a href="Zabbix 7.2.pdf" target="_blank" class="doc-btn">📄 Voir le document</a>
+                </div>
+            </div>
+
+            <div class="project-card">
+                <h3>⚙️ Automatisation Active Directory via PowerShell</h3>
+                <p>Scripts PowerShell complets pour automatiser la configuration d'un domaine Windows : adressage IP statique, promotion en contrôleur de domaine, zones DNS directe/inversée, étendue DHCP, profils itinérants, dossiers de base et gestion de quotas via le Gestionnaire de ressources.</p>
+                <div class="project-tag">PowerShell</div>
+                <div class="project-tag">AD-DS</div>
+                <div class="project-tag">DNS / DHCP</div>
+                <div class="project-tag">Quotas</div>
+                <div class="project-tag">Automatisation</div>
+                <div style="margin-top:1.2rem;">
+                    <a href="Commandes PowerShell.pdf" target="_blank" class="doc-btn">📄 Voir le document</a>
+                </div>
             </div>
 
         </div>
@@ -1292,6 +1400,4 @@
     </script>
 </body>
 </html>
-    </script>
-</body>
-</html>
+
