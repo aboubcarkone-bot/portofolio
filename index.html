@@ -1,1449 +1,481 @@
-<<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Aboubacar Kone - Portfolio BTS SIO SISR</title>
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(135deg, #0a0e27 0%, #1a1a2e 50%, #16213e 100%);
-            color: #ffffff;
-            overflow-x: hidden;
-            line-height: 1.6;
-        }
-
-        /* Navigation futuriste */
-        .navbar {
-            position: fixed;
-            top: 0;
-            width: 100%;
-            background: rgba(10, 14, 39, 0.95);
-            backdrop-filter: blur(10px);
-            border-bottom: 1px solid #00d4ff;
-            z-index: 1000;
-            transition: all 0.3s ease;
-        }
-
-        .nav-container {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 1rem 2rem;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        .logo {
-            font-size: 1.8rem;
-            font-weight: bold;
-            color: #00d4ff;
-            text-shadow: 0 0 20px rgba(0, 212, 255, 0.5);
-        }
-
-        .nav-links {
-            display: flex;
-            list-style: none;
-            gap: 2rem;
-        }
-
-        .nav-links a {
-            color: #ffffff;
-            text-decoration: none;
-            padding: 0.5rem 1rem;
-            border-radius: 25px;
-            transition: all 0.3s ease;
-            position: relative;
-        }
-
-        .nav-links a:hover {
-            color: #00d4ff;
-            background: rgba(0, 212, 255, 0.1);
-            box-shadow: 0 0 15px rgba(0, 212, 255, 0.3);
-        }
-
-        /* Hero Section */
-        .hero {
-            height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            position: relative;
-            background: radial-gradient(ellipse at center, rgba(0, 212, 255, 0.1) 0%, transparent 70%);
-        }
-
-        .hero-content {
-            text-align: center;
-            z-index: 2;
-            animation: slideUp 1s ease-out;
-        }
-
-        .hero h1 {
-            font-size: 4rem;
-            font-weight: 700;
-            margin-bottom: 1rem;
-            background: linear-gradient(45deg, #00d4ff, #ffffff, #00ff88);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-
-        .hero .subtitle {
-            font-size: 1.5rem;
-            color: #a0a0a0;
-            margin-bottom: 2rem;
-            animation: fadeIn 1.5s ease-out;
-        }
-
-        .cta-button {
-            display: inline-block;
-            padding: 1rem 2rem;
-            background: linear-gradient(45deg, #00d4ff, #00ff88);
-            color: #000;
-            text-decoration: none;
-            border-radius: 50px;
-            font-weight: bold;
-            transition: all 0.3s ease;
-            box-shadow: 0 5px 15px rgba(0, 212, 255, 0.3);
-            border: none;
-            cursor: pointer;
-        }
-
-        .cta-button:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 10px 25px rgba(0, 212, 255, 0.5);
-        }
-
-        /* Particules animées */
-        .particles {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            pointer-events: none;
-        }
-
-        .particle {
-            position: absolute;
-            width: 2px;
-            height: 2px;
-            background: #00d4ff;
-            border-radius: 50%;
-            animation: float 6s infinite linear;
-        }
-
-        /* Sections */
-        .section {
-            padding: 5rem 2rem;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        .section-title {
-            font-size: 2.5rem;
-            text-align: center;
-            margin-bottom: 3rem;
-            color: #00d4ff;
-            position: relative;
-        }
-
-        .section-title::after {
-            content: '';
-            position: absolute;
-            bottom: -10px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 100px;
-            height: 3px;
-            background: linear-gradient(45deg, #00d4ff, #00ff88);
-        }
-
-        /* Grid des compétences */
-        .skills-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-            margin-top: 3rem;
-        }
-
-        .skill-card {
-            background: linear-gradient(145deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.05));
-            border: 1px solid rgba(0, 212, 255, 0.3);
-            border-radius: 20px;
-            padding: 2rem;
-            transition: all 0.3s ease;
-            backdrop-filter: blur(10px);
-        }
-
-        .skill-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 20px 40px rgba(0, 212, 255, 0.2);
-            border-color: #00d4ff;
-        }
-
-        .skill-icon {
-            font-size: 3rem;
-            margin-bottom: 1rem;
-            color: #00ff88;
-        }
-
-        .skill-card h3 {
-            font-size: 1.5rem;
-            margin-bottom: 1rem;
-            color: #00d4ff;
-        }
-
-        /* Projets */
-        .projects-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 2rem;
-            margin-top: 3rem;
-        }
-
-        .project-card {
-            background: linear-gradient(145deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.05));
-            border: 1px solid rgba(0, 212, 255, 0.3);
-            border-radius: 20px;
-            padding: 2rem;
-            transition: all 0.3s ease;
-            backdrop-filter: blur(10px);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .project-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(0, 212, 255, 0.1), transparent);
-            transition: left 0.5s ease;
-        }
-
-        .project-card:hover::before {
-            left: 100%;
-        }
-
-        .project-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 20px 40px rgba(0, 212, 255, 0.2);
-            border-color: #00d4ff;
-        }
-
-        .project-tag {
-            display: inline-block;
-            background: rgba(0, 212, 255, 0.2);
-            color: #00d4ff;
-            padding: 0.3rem 0.8rem;
-            border-radius: 15px;
-            font-size: 0.8rem;
-            margin: 0.2rem;
-        }
-
-        /* Timeline */
-        .timeline {
-            position: relative;
-            margin: 3rem 0;
-        }
-
-        .timeline::before {
-            content: '';
-            position: absolute;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 2px;
-            height: 100%;
-            background: linear-gradient(to bottom, #00d4ff, #00ff88);
-        }
-
-        .timeline-item {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin: 2rem 0;
-            position: relative;
-        }
-
-        .timeline-content {
-            background: linear-gradient(145deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.05));
-            border: 1px solid rgba(0, 212, 255, 0.3);
-            border-radius: 15px;
-            padding: 1.5rem;
-            width: 45%;
-            backdrop-filter: blur(10px);
-        }
-
-        .timeline-item:nth-child(even) .timeline-content {
-            margin-left: auto;
-        }
-
-        .timeline-dot {
-            position: absolute;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 15px;
-            height: 15px;
-            background: #00d4ff;
-            border-radius: 50%;
-            box-shadow: 0 0 20px rgba(0, 212, 255, 0.5);
-        }
-
-        /* Contact */
-        .contact-form {
-            max-width: 600px;
-            margin: 0 auto;
-        }
-
-        .form-group {
-            margin-bottom: 2rem;
-        }
-
-        .form-group input,
-        .form-group textarea {
-            width: 100%;
-            padding: 1rem;
-            background: rgba(255, 255, 255, 0.1);
-            border: 1px solid rgba(0, 212, 255, 0.3);
-            border-radius: 10px;
-            color: #ffffff;
-            font-size: 1rem;
-            backdrop-filter: blur(10px);
-        }
-
-        .form-group input::placeholder,
-        .form-group textarea::placeholder {
-            color: #a0a0a0;
-        }
-
-        .form-group input:focus,
-        .form-group textarea:focus {
-            outline: none;
-            border-color: #00d4ff;
-            box-shadow: 0 0 15px rgba(0, 212, 255, 0.3);
-        }
-
-        .contact-link {
-            color: #00d4ff;
-            font-size: 1.2rem;
-            text-decoration: none;
-            display: inline-block;
-            margin-top: 1rem;
-            padding: 0.5rem 1rem;
-            border: 1px solid rgba(0, 212, 255, 0.3);
-            border-radius: 10px;
-            transition: all 0.3s ease;
-        }
-
-        .contact-link:hover {
-            background: rgba(0, 212, 255, 0.1);
-            box-shadow: 0 0 15px rgba(0, 212, 255, 0.3);
-            transform: translateY(-2px);
-        }
-
-        /* Footer */
-        .footer {
-            text-align: center;
-            padding: 2rem;
-            background: rgba(10, 14, 39, 0.8);
-            border-top: 1px solid rgba(0, 212, 255, 0.3);
-        }
-
-        /* Animations */
-        @keyframes slideUp {
-            from { opacity: 0; transform: translateY(50px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
-        }
-
-        @keyframes float {
-            from { transform: translateY(100vh) rotate(0deg); opacity: 1; }
-            to { transform: translateY(-100px) rotate(360deg); opacity: 0; }
-        }
-
-        .doc-btn {
-            display: inline-flex;
-            align-items: center;
-            gap: 6px;
-            padding: 0.55rem 1.2rem;
-            background: rgba(0, 212, 255, 0.12);
-            border: 1px solid rgba(0, 212, 255, 0.5);
-            border-radius: 8px;
-            color: #00d4ff;
-            text-decoration: none;
-            font-size: 0.85rem;
-            font-weight: 600;
-            transition: all 0.3s ease;
-        }
-        .doc-btn:hover {
-            background: rgba(0, 212, 255, 0.25);
-            box-shadow: 0 0 14px rgba(0, 212, 255, 0.35);
-            transform: translateY(-2px);
-        }
-
-        /* Responsive */
-        @media (max-width: 768px) {
-            .hero h1 { font-size: 2.5rem; }
-            .nav-links { display: none; }
-            .timeline::before { left: 20px; }
-            .timeline-content { width: calc(100% - 60px); margin-left: 60px !important; }
-            .timeline-dot { left: 20px; }
-        }
-
-        /* À propos styles */
-        .about-container {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
-            gap: 2rem;
-            margin-top: 3rem;
-        }
-
-        .about-card {
-            background: linear-gradient(145deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.05));
-            border: 1px solid rgba(0, 212, 255, 0.3);
-            border-radius: 20px;
-            padding: 2.5rem;
-            transition: all 0.3s ease;
-            backdrop-filter: blur(10px);
-        }
-
-        .about-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 20px 40px rgba(0, 212, 255, 0.2);
-            border-color: #00d4ff;
-        }
-
-        .about-icon {
-            font-size: 4rem;
-            text-align: center;
-            margin-bottom: 1.5rem;
-            animation: float-icon 3s ease-in-out infinite;
-        }
-
-        @keyframes float-icon {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-10px); }
-        }
-
-        .about-card h3 {
-            color: #00d4ff;
-            font-size: 1.8rem;
-            margin-bottom: 1rem;
-            text-align: center;
-        }
-
-        .about-text {
-            font-size: 1.1rem;
-            line-height: 1.8;
-            color: #d0d0d0;
-            text-align: justify;
-        }
-
-        @media (max-width: 768px) {
-            .about-container { grid-template-columns: 1fr; }
-        }
-
-        /* =============================================
-           VEILLE TECHNOLOGIQUE - Styles RSS
-        ============================================= */
-        .veille-wrapper {
-            background: linear-gradient(145deg, rgba(255,255,255,0.07), rgba(255,255,255,0.03));
-            border: 1px solid rgba(0, 212, 255, 0.3);
-            border-radius: 20px;
-            padding: 2rem;
-            backdrop-filter: blur(10px);
-            margin-top: 2rem;
-        }
-
-        .vt-header-bar {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            margin-bottom: 1.5rem;
-            flex-wrap: wrap;
-            gap: 12px;
-        }
-
-        .vt-title-bar {
-            font-size: 1.2rem;
-            font-weight: 600;
-            color: #00d4ff;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-
-        .vt-live-dot {
-            width: 8px;
-            height: 8px;
-            border-radius: 50%;
-            background: #00ff88;
-            animation: vt-pulse 2s infinite;
-            flex-shrink: 0;
-        }
-
-        @keyframes vt-pulse {
-            0%,100% { opacity: 1; box-shadow: 0 0 6px #00ff88; }
-            50% { opacity: 0.4; box-shadow: none; }
-        }
-
-        .vt-status-text {
-            font-size: 0.8rem;
-            color: #a0a0a0;
-            margin-left: 4px;
-        }
-
-        .vt-refresh-btn {
-            padding: 0.5rem 1.2rem;
-            background: rgba(0, 212, 255, 0.1);
-            border: 1px solid rgba(0, 212, 255, 0.4);
-            border-radius: 25px;
-            color: #00d4ff;
-            font-size: 0.85rem;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            display: flex;
-            align-items: center;
-            gap: 6px;
-        }
-
-        .vt-refresh-btn:hover {
-            background: rgba(0, 212, 255, 0.2);
-            box-shadow: 0 0 12px rgba(0, 212, 255, 0.3);
-        }
-
-        .vt-refresh-btn:disabled {
-            opacity: 0.5;
-            cursor: not-allowed;
-        }
-
-        .vt-stats-row {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
-            gap: 10px;
-            margin-bottom: 1.5rem;
-        }
-
-        .vt-stat-box {
-            background: rgba(0, 0, 0, 0.3);
-            border: 1px solid rgba(0, 212, 255, 0.2);
-            border-radius: 12px;
-            padding: 0.8rem 1rem;
-            text-align: center;
-        }
-
-        .vt-stat-num {
-            font-size: 1.6rem;
-            font-weight: 700;
-            color: #00d4ff;
-        }
-
-        .vt-stat-lbl {
-            font-size: 0.72rem;
-            color: #a0a0a0;
-            margin-top: 2px;
-            text-transform: uppercase;
-            letter-spacing: 0.04em;
-        }
-
-        .vt-sources-bar {
-            margin-bottom: 1.5rem;
-        }
-
-        .vt-sources-label {
-            font-size: 0.75rem;
-            color: #a0a0a0;
-            text-transform: uppercase;
-            letter-spacing: 0.06em;
-            margin-bottom: 8px;
-        }
-
-        .vt-sources-list {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 8px;
-        }
-
-        .vt-src-pill {
-            font-size: 0.78rem;
-            display: flex;
-            align-items: center;
-            gap: 5px;
-            padding: 4px 12px;
-            border: 1px solid rgba(255,255,255,0.15);
-            border-radius: 20px;
-            color: #c0c0c0;
-        }
-
-        .vt-src-color {
-            width: 7px;
-            height: 7px;
-            border-radius: 50%;
-        }
-
-        .vt-filters-row {
-            display: flex;
-            gap: 8px;
-            flex-wrap: wrap;
-            margin-bottom: 1.5rem;
-        }
-
-        .vt-filter-chip {
-            font-size: 0.8rem;
-            padding: 5px 14px;
-            border-radius: 20px;
-            border: 1px solid rgba(0, 212, 255, 0.3);
-            background: transparent;
-            color: #a0a0a0;
-            cursor: pointer;
-            transition: all 0.25s ease;
-            user-select: none;
-        }
-
-        .vt-filter-chip:hover {
-            border-color: #00d4ff;
-            color: #00d4ff;
-        }
-
-        .vt-filter-chip.active {
-            background: rgba(0, 212, 255, 0.2);
-            border-color: #00d4ff;
-            color: #00d4ff;
-            box-shadow: 0 0 10px rgba(0, 212, 255, 0.2);
-        }
-
-        .vt-articles-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 14px;
-        }
-
-        .vt-article-card {
-            background: rgba(0, 0, 0, 0.35);
-            border: 1px solid rgba(0, 212, 255, 0.2);
-            border-radius: 14px;
-            padding: 1.2rem 1.4rem;
-            transition: all 0.3s ease;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .vt-article-card::before {
-            content: '';
-            position: absolute;
-            top: 0; left: -100%;
-            width: 100%; height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(0, 212, 255, 0.06), transparent);
-            transition: left 0.5s ease;
-        }
-
-        .vt-article-card:hover::before { left: 100%; }
-
-        .vt-article-card:hover {
-            border-color: rgba(0, 212, 255, 0.5);
-            transform: translateY(-4px);
-            box-shadow: 0 12px 30px rgba(0, 212, 255, 0.12);
-        }
-
-        .vt-card-top {
-            display: flex;
-            align-items: flex-start;
-            justify-content: space-between;
-            gap: 8px;
-            margin-bottom: 8px;
-        }
-
-        .vt-article-title {
-            font-size: 0.92rem;
-            font-weight: 600;
-            color: #e8e8e8;
-            line-height: 1.45;
-            flex: 1;
-        }
-
-        .vt-badge {
-            font-size: 0.7rem;
-            font-weight: 600;
-            padding: 3px 9px;
-            border-radius: 12px;
-            white-space: nowrap;
-            flex-shrink: 0;
-        }
-
-        .badge-Sécurité  { background: rgba(220,50,50,0.25);  color: #ff7070; border: 1px solid rgba(220,50,50,0.4);  }
-        .badge-Réseau    { background: rgba(0,180,255,0.2);   color: #60d0ff; border: 1px solid rgba(0,180,255,0.35); }
-        .badge-Cloud     { background: rgba(50,200,100,0.2);  color: #70e080; border: 1px solid rgba(50,200,100,0.35);}
-        .badge-IA        { background: rgba(160,80,255,0.2);  color: #c080ff; border: 1px solid rgba(160,80,255,0.35);}
-        .badge-Système   { background: rgba(255,180,0,0.2);   color: #ffc040; border: 1px solid rgba(255,180,0,0.35); }
-
-        .vt-card-meta {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            margin-top: 6px;
-            font-size: 0.75rem;
-            color: #808080;
-        }
-
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background: linear-gradient(135deg, #0a0e27 0%, #1a1a2e 50%, #16213e 100%); color: #ffffff; overflow-x: hidden; line-height: 1.6; }
+
+        .navbar { position: fixed; top: 0; width: 100%; background: rgba(10,14,39,0.95); backdrop-filter: blur(10px); border-bottom: 1px solid #00d4ff; z-index: 1000; }
+        .nav-container { display: flex; justify-content: space-between; align-items: center; padding: 1rem 2rem; max-width: 1200px; margin: 0 auto; }
+        .logo { font-size: 1.8rem; font-weight: bold; color: #00d4ff; text-shadow: 0 0 20px rgba(0,212,255,0.5); }
+        .nav-links { display: flex; list-style: none; gap: 2rem; }
+        .nav-links a { color: #fff; text-decoration: none; padding: 0.5rem 1rem; border-radius: 25px; transition: all 0.3s; }
+        .nav-links a:hover { color: #00d4ff; background: rgba(0,212,255,0.1); box-shadow: 0 0 15px rgba(0,212,255,0.3); }
+
+        .hero { height: 100vh; display: flex; align-items: center; justify-content: center; position: relative; background: radial-gradient(ellipse at center, rgba(0,212,255,0.1) 0%, transparent 70%); }
+        .hero-content { text-align: center; z-index: 2; animation: slideUp 1s ease-out; }
+        .hero h1 { font-size: 4rem; font-weight: 700; margin-bottom: 1rem; background: linear-gradient(45deg, #00d4ff, #fff, #00ff88); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+        .hero .subtitle { font-size: 1.5rem; color: #a0a0a0; margin-bottom: 2rem; }
+        .cta-button { display: inline-block; padding: 1rem 2rem; background: linear-gradient(45deg, #00d4ff, #00ff88); color: #000; text-decoration: none; border-radius: 50px; font-weight: bold; transition: all 0.3s; box-shadow: 0 5px 15px rgba(0,212,255,0.3); border: none; cursor: pointer; }
+        .cta-button:hover { transform: translateY(-3px); box-shadow: 0 10px 25px rgba(0,212,255,0.5); }
+
+        .particles { position: absolute; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; }
+        .particle { position: absolute; width: 2px; height: 2px; background: #00d4ff; border-radius: 50%; animation: float 6s infinite linear; }
+
+        .section { padding: 5rem 2rem; max-width: 1200px; margin: 0 auto; }
+        .section-title { font-size: 2.5rem; text-align: center; margin-bottom: 3rem; color: #00d4ff; position: relative; }
+        .section-title::after { content: ''; position: absolute; bottom: -10px; left: 50%; transform: translateX(-50%); width: 100px; height: 3px; background: linear-gradient(45deg, #00d4ff, #00ff88); }
+
+        .skills-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; margin-top: 3rem; }
+        .skill-card { background: linear-gradient(145deg, rgba(255,255,255,0.1), rgba(255,255,255,0.05)); border: 1px solid rgba(0,212,255,0.3); border-radius: 20px; padding: 2rem; transition: all 0.3s; backdrop-filter: blur(10px); }
+        .skill-card:hover { transform: translateY(-10px); box-shadow: 0 20px 40px rgba(0,212,255,0.2); border-color: #00d4ff; }
+        .skill-icon { font-size: 3rem; margin-bottom: 1rem; color: #00ff88; }
+        .skill-card h3 { font-size: 1.5rem; margin-bottom: 1rem; color: #00d4ff; }
+
+        .projects-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 2rem; margin-top: 3rem; }
+        .project-card { background: linear-gradient(145deg, rgba(255,255,255,0.1), rgba(255,255,255,0.05)); border: 1px solid rgba(0,212,255,0.3); border-radius: 20px; padding: 2rem; transition: all 0.3s; backdrop-filter: blur(10px); position: relative; overflow: hidden; }
+        .project-card::before { content: ''; position: absolute; top: 0; left: -100%; width: 100%; height: 100%; background: linear-gradient(90deg, transparent, rgba(0,212,255,0.1), transparent); transition: left 0.5s; }
+        .project-card:hover::before { left: 100%; }
+        .project-card:hover { transform: translateY(-10px); box-shadow: 0 20px 40px rgba(0,212,255,0.2); border-color: #00d4ff; }
+        .project-card h3 { font-size: 1.2rem; margin-bottom: 1rem; color: #00d4ff; }
+        .project-tag { display: inline-block; background: rgba(0,212,255,0.2); color: #00d4ff; padding: 0.3rem 0.8rem; border-radius: 15px; font-size: 0.8rem; margin: 0.2rem; }
+
+        .doc-btn { display: inline-flex; align-items: center; gap: 6px; padding: 0.55rem 1.2rem; background: rgba(0,212,255,0.12); border: 1px solid rgba(0,212,255,0.5); border-radius: 8px; color: #00d4ff; text-decoration: none; font-size: 0.85rem; font-weight: 600; transition: all 0.3s; }
+        .doc-btn:hover { background: rgba(0,212,255,0.25); box-shadow: 0 0 14px rgba(0,212,255,0.35); transform: translateY(-2px); }
+
+        .timeline { position: relative; margin: 3rem 0; }
+        .timeline::before { content: ''; position: absolute; left: 50%; transform: translateX(-50%); width: 2px; height: 100%; background: linear-gradient(to bottom, #00d4ff, #00ff88); }
+        .timeline-item { display: flex; justify-content: space-between; align-items: center; margin: 2rem 0; position: relative; }
+        .timeline-content { background: linear-gradient(145deg, rgba(255,255,255,0.1), rgba(255,255,255,0.05)); border: 1px solid rgba(0,212,255,0.3); border-radius: 15px; padding: 1.5rem; width: 45%; backdrop-filter: blur(10px); }
+        .timeline-item:nth-child(even) .timeline-content { margin-left: auto; }
+        .timeline-dot { position: absolute; left: 50%; transform: translateX(-50%); width: 15px; height: 15px; background: #00d4ff; border-radius: 50%; box-shadow: 0 0 20px rgba(0,212,255,0.5); }
+
+        .contact-form { max-width: 600px; margin: 0 auto; }
+        .form-group { margin-bottom: 2rem; }
+        .form-group input, .form-group textarea { width: 100%; padding: 1rem; background: rgba(255,255,255,0.1); border: 1px solid rgba(0,212,255,0.3); border-radius: 10px; color: #fff; font-size: 1rem; }
+        .form-group input::placeholder, .form-group textarea::placeholder { color: #a0a0a0; }
+        .form-group input:focus, .form-group textarea:focus { outline: none; border-color: #00d4ff; box-shadow: 0 0 15px rgba(0,212,255,0.3); }
+        .contact-link { color: #00d4ff; font-size: 1.2rem; text-decoration: none; display: inline-block; margin-top: 1rem; padding: 0.5rem 1rem; border: 1px solid rgba(0,212,255,0.3); border-radius: 10px; transition: all 0.3s; }
+        .contact-link:hover { background: rgba(0,212,255,0.1); box-shadow: 0 0 15px rgba(0,212,255,0.3); transform: translateY(-2px); }
+
+        .footer { text-align: center; padding: 2rem; background: rgba(10,14,39,0.8); border-top: 1px solid rgba(0,212,255,0.3); }
+
+        .about-container { display: grid; grid-template-columns: repeat(auto-fit, minmax(400px, 1fr)); gap: 2rem; margin-top: 3rem; }
+        .about-card { background: linear-gradient(145deg, rgba(255,255,255,0.1), rgba(255,255,255,0.05)); border: 1px solid rgba(0,212,255,0.3); border-radius: 20px; padding: 2.5rem; transition: all 0.3s; backdrop-filter: blur(10px); }
+        .about-card:hover { transform: translateY(-5px); box-shadow: 0 20px 40px rgba(0,212,255,0.2); border-color: #00d4ff; }
+        .about-icon { font-size: 4rem; text-align: center; margin-bottom: 1.5rem; animation: float-icon 3s ease-in-out infinite; }
+        .about-card h3 { color: #00d4ff; font-size: 1.8rem; margin-bottom: 1rem; text-align: center; }
+        .about-text { font-size: 1.1rem; line-height: 1.8; color: #d0d0d0; text-align: justify; }
+
+        /* Veille */
+        .veille-wrapper { background: linear-gradient(145deg, rgba(255,255,255,0.07), rgba(255,255,255,0.03)); border: 1px solid rgba(0,212,255,0.3); border-radius: 20px; padding: 2rem; backdrop-filter: blur(10px); margin-top: 2rem; }
+        .vt-header-bar { display: flex; align-items: center; justify-content: space-between; margin-bottom: 1.5rem; flex-wrap: wrap; gap: 12px; }
+        .vt-title-bar { font-size: 1.2rem; font-weight: 600; color: #00d4ff; display: flex; align-items: center; gap: 8px; }
+        .vt-live-dot { width: 8px; height: 8px; border-radius: 50%; background: #00ff88; animation: vt-pulse 2s infinite; flex-shrink: 0; }
+        @keyframes vt-pulse { 0%,100%{opacity:1;box-shadow:0 0 6px #00ff88}50%{opacity:0.4;box-shadow:none} }
+        .vt-status-text { font-size: 0.8rem; color: #a0a0a0; margin-left: 4px; }
+        .vt-refresh-btn { padding: 0.5rem 1.2rem; background: rgba(0,212,255,0.1); border: 1px solid rgba(0,212,255,0.4); border-radius: 25px; color: #00d4ff; font-size: 0.85rem; cursor: pointer; transition: all 0.3s; display: flex; align-items: center; gap: 6px; }
+        .vt-refresh-btn:hover { background: rgba(0,212,255,0.2); box-shadow: 0 0 12px rgba(0,212,255,0.3); }
+        .vt-refresh-btn:disabled { opacity: 0.5; cursor: not-allowed; }
+        .vt-stats-row { display: grid; grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)); gap: 10px; margin-bottom: 1.5rem; }
+        .vt-stat-box { background: rgba(0,0,0,0.3); border: 1px solid rgba(0,212,255,0.2); border-radius: 12px; padding: 0.8rem 1rem; text-align: center; }
+        .vt-stat-num { font-size: 1.6rem; font-weight: 700; color: #00d4ff; }
+        .vt-stat-lbl { font-size: 0.72rem; color: #a0a0a0; margin-top: 2px; text-transform: uppercase; letter-spacing: 0.04em; }
+        .vt-sources-bar { margin-bottom: 1.5rem; }
+        .vt-sources-label { font-size: 0.75rem; color: #a0a0a0; text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 8px; }
+        .vt-sources-list { display: flex; flex-wrap: wrap; gap: 8px; }
+        .vt-src-pill { font-size: 0.78rem; display: flex; align-items: center; gap: 5px; padding: 4px 12px; border: 1px solid rgba(255,255,255,0.15); border-radius: 20px; color: #c0c0c0; }
+        .vt-src-color { width: 7px; height: 7px; border-radius: 50%; }
+        .vt-filters-row { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 1.5rem; }
+        .vt-filter-chip { font-size: 0.8rem; padding: 5px 14px; border-radius: 20px; border: 1px solid rgba(0,212,255,0.3); background: transparent; color: #a0a0a0; cursor: pointer; transition: all 0.25s; user-select: none; }
+        .vt-filter-chip:hover { border-color: #00d4ff; color: #00d4ff; }
+        .vt-filter-chip.active { background: rgba(0,212,255,0.2); border-color: #00d4ff; color: #00d4ff; box-shadow: 0 0 10px rgba(0,212,255,0.2); }
+        .vt-articles-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 14px; }
+        .vt-article-card { background: rgba(0,0,0,0.35); border: 1px solid rgba(0,212,255,0.2); border-radius: 14px; padding: 1.2rem 1.4rem; transition: all 0.3s; position: relative; overflow: hidden; }
+        .vt-article-card::before { content: ''; position: absolute; top:0;left:-100%;width:100%;height:100%;background:linear-gradient(90deg,transparent,rgba(0,212,255,0.06),transparent);transition:left 0.5s; }
+        .vt-article-card:hover::before { left:100%; }
+        .vt-article-card:hover { border-color: rgba(0,212,255,0.5); transform: translateY(-4px); box-shadow: 0 12px 30px rgba(0,212,255,0.12); }
+        .vt-card-top { display: flex; align-items: flex-start; justify-content: space-between; gap: 8px; margin-bottom: 8px; }
+        .vt-article-title { font-size: 0.92rem; font-weight: 600; color: #e8e8e8; line-height: 1.45; flex: 1; }
+        .vt-badge { font-size: 0.7rem; font-weight: 600; padding: 3px 9px; border-radius: 12px; white-space: nowrap; flex-shrink: 0; }
+        .badge-Sécurité { background:rgba(220,50,50,0.25);color:#ff7070;border:1px solid rgba(220,50,50,0.4); }
+        .badge-Réseau { background:rgba(0,180,255,0.2);color:#60d0ff;border:1px solid rgba(0,180,255,0.35); }
+        .badge-Cloud { background:rgba(50,200,100,0.2);color:#70e080;border:1px solid rgba(50,200,100,0.35); }
+        .badge-IA { background:rgba(160,80,255,0.2);color:#c080ff;border:1px solid rgba(160,80,255,0.35); }
+        .badge-Système { background:rgba(255,180,0,0.2);color:#ffc040;border:1px solid rgba(255,180,0,0.35); }
+        .vt-card-meta { display: flex; align-items: center; gap: 8px; margin-top: 6px; font-size: 0.75rem; color: #808080; }
         .vt-card-meta span { display: flex; align-items: center; gap: 3px; }
+        .vt-excerpt { font-size: 0.8rem; color: #909090; line-height: 1.6; margin-top: 8px; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; }
+        .vt-read-link { display: inline-flex; align-items: center; gap: 4px; font-size: 0.78rem; color: #00d4ff; text-decoration: none; margin-top: 10px; transition: all 0.2s; }
+        .vt-read-link:hover { color: #00ff88; text-decoration: underline; }
+        .vt-skeleton { background: linear-gradient(90deg,rgba(255,255,255,0.05) 25%,rgba(255,255,255,0.1) 50%,rgba(255,255,255,0.05) 75%); background-size: 200% 100%; border-radius: 14px; height: 150px; animation: vt-shimmer 1.5s infinite; }
+        @keyframes vt-shimmer { 0%{background-position:200% 0}100%{background-position:-200% 0} }
+        .vt-empty-msg { text-align: center; padding: 3rem 1rem; color: #606060; font-size: 0.95rem; }
+        .vt-tableau-link { text-align: center; margin-top: 2rem; }
 
-        .vt-excerpt {
-            font-size: 0.8rem;
-            color: #909090;
-            line-height: 1.6;
-            margin-top: 8px;
-            display: -webkit-box;
-            -webkit-line-clamp: 3;
-            -webkit-box-orient: vertical;
-            overflow: hidden;
-        }
+        @keyframes slideUp { from{opacity:0;transform:translateY(50px)}to{opacity:1;transform:translateY(0)} }
+        @keyframes fadeIn { from{opacity:0}to{opacity:1} }
+        @keyframes float { from{transform:translateY(100vh) rotate(0deg);opacity:1}to{transform:translateY(-100px) rotate(360deg);opacity:0} }
+        @keyframes float-icon { 0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)} }
 
-        .vt-read-link {
-            display: inline-flex;
-            align-items: center;
-            gap: 4px;
-            font-size: 0.78rem;
-            color: #00d4ff;
-            text-decoration: none;
-            margin-top: 10px;
-            transition: all 0.2s;
-        }
-
-        .vt-read-link:hover {
-            color: #00ff88;
-            text-decoration: underline;
-        }
-
-        .vt-skeleton {
-            background: linear-gradient(90deg, rgba(255,255,255,0.05) 25%, rgba(255,255,255,0.1) 50%, rgba(255,255,255,0.05) 75%);
-            background-size: 200% 100%;
-            border-radius: 14px;
-            height: 150px;
-            animation: vt-shimmer 1.5s infinite;
-        }
-
-        @keyframes vt-shimmer {
-            0% { background-position: 200% 0; }
-            100% { background-position: -200% 0; }
-        }
-
-        .vt-empty-msg {
-            text-align: center;
-            padding: 3rem 1rem;
-            color: #606060;
-            font-size: 0.95rem;
-        }
-
-        .vt-tableau-link {
-            text-align: center;
-            margin-top: 2rem;
-        }
-
-        @media (max-width: 768px) {
-            .vt-articles-grid { grid-template-columns: 1fr; }
-            .vt-stats-row { grid-template-columns: repeat(2, 1fr); }
+        @media(max-width:768px){
+            .hero h1{font-size:2.5rem}
+            .nav-links{display:none}
+            .timeline::before{left:20px}
+            .timeline-content{width:calc(100% - 60px);margin-left:60px !important}
+            .timeline-dot{left:20px}
+            .about-container{grid-template-columns:1fr}
+            .vt-articles-grid{grid-template-columns:1fr}
+            .vt-stats-row{grid-template-columns:repeat(2,1fr)}
         }
     </style>
 </head>
 <body>
-    <!-- Navigation -->
-    <nav class="navbar">
-        <div class="nav-container">
-            <div class="logo">Aboubacar Kone</div>
-            <ul class="nav-links">
-                <li><a href="#accueil">Accueil</a></li>
-                <li><a href="#apropos">À propos</a></li>
-                <li><a href="#competences">Compétences</a></li>
-                <li><a href="#projets">Projets Entreprise</a></li>
-                <li><a href="#projets-ecole">Projets École</a></li>
-                <li><a href="#parcours">Parcours</a></li>
-                <li><a href="#veille">Veille Technologique</a></li>
-                <li><a href="#contact">Contact</a></li>
-            </ul>
-        </div>
-    </nav>
 
-    <!-- Hero Section -->
-    <section id="accueil" class="hero">
-        <div class="particles"></div>
-        <div class="hero-content">
-            <h1>Aboubacar Kone</h1>
-            <p class="subtitle">Étudiant BTS SIO SISR • Spécialiste Infrastructure & Réseaux</p>
-            <a href="#projets" class="cta-button">Découvrir mes projets</a>
-        </div>
-    </section>
+<!-- Navigation -->
+<nav class="navbar">
+    <div class="nav-container">
+        <div class="logo">Aboubacar Kone</div>
+        <ul class="nav-links">
+            <li><a href="#accueil">Accueil</a></li>
+            <li><a href="#apropos">À propos</a></li>
+            <li><a href="#competences">Compétences</a></li>
+            <li><a href="#projets">Projets Entreprise</a></li>
+            <li><a href="#projets-ecole">Projets École</a></li>
+            <li><a href="#parcours">Parcours</a></li>
+            <li><a href="#veille">Veille Technologique</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </div>
+</nav>
 
-    <!-- About me -->
-    <section id="apropos" class="section">
-        <h2 class="section-title">About me</h2>
-        <div class="about-container">
-            <div class="about-card">
-                <div class="about-icon">👨‍💻</div>
-                <p class="about-text">
-                    Étudiant en BTS SIO, je suis passionné par la technologie depuis toujours. Ma curiosité et mon intérêt pour ce domaine m'ont conduit à me plonger dans l'univers de la cybersécurité. Étant enthousiaste, créatif, persévérant et ambitieux, je m'investis pleinement dans ma formation.
-                </p>
-                <div style="text-align: center; margin-top: 2rem; display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
-                    <a href="https://www.linkedin.com/in/aboubacarkone" target="_blank" style="display: inline-block; padding: 0.8rem 1.5rem; background: #0077b5; color: white; text-decoration: none; border-radius: 10px; font-weight: bold; transition: all 0.3s ease; box-shadow: 0 5px 15px rgba(0, 119, 181, 0.3);">
-                        <span style="font-size: 1.2rem; margin-right: 0.5rem;">💼</span> Profil LinkedIn
-                    </a>
-                    <a href="#" onclick="alert('Veuillez télécharger votre CV et le placer dans le même dossier que ce fichier HTML, puis remplacez le # par le nom du fichier (ex: CV_Aboubacar_Kone.pdf)'); return false;" style="display: inline-block; padding: 0.8rem 1.5rem; background: linear-gradient(45deg, #00d4ff, #00ff88); color: #000; text-decoration: none; border-radius: 10px; font-weight: bold; transition: all 0.3s ease; box-shadow: 0 5px 15px rgba(0, 212, 255, 0.3);">
-                        <span style="font-size: 1.2rem; margin-right: 0.5rem;">📄</span> Télécharger mon CV
-                    </a>
-                </div>
-            </div>
-            <div class="about-card">
-                <div class="about-icon">🎯</div>
-                <h3>Mon Projet Professionnel</h3>
-                <p class="about-text">
-                    Mon projet professionnel consiste à évoluer dans le domaine de l'informatique, en commençant par mon BTS SIO en alternance, où je me forme en tant que technicien support et administrateur réseau. Mon objectif à moyen terme est de poursuivre mes études vers un Master en Cybersécurité, afin de devenir expert dans la protection des systèmes informatiques. À long terme, je vise à occuper un poste stratégique, comme celui de responsable de la sécurité des systèmes d'information (RSSI), pour sécuriser les infrastructures et anticiper les cybermenaces.
-                </p>
+<!-- Hero -->
+<section id="accueil" class="hero">
+    <div class="particles"></div>
+    <div class="hero-content">
+        <h1>Aboubacar Kone</h1>
+        <p class="subtitle">Étudiant BTS SIO SISR • Spécialiste Infrastructure & Réseaux</p>
+        <a href="#projets" class="cta-button">Découvrir mes projets</a>
+    </div>
+</section>
+
+<!-- À propos -->
+<section id="apropos" class="section">
+    <h2 class="section-title">About me</h2>
+    <div class="about-container">
+        <div class="about-card">
+            <div class="about-icon">👨‍💻</div>
+            <p class="about-text">Étudiant en BTS SIO, je suis passionné par la technologie depuis toujours. Ma curiosité et mon intérêt pour ce domaine m'ont conduit à me plonger dans l'univers de la cybersécurité. Étant enthousiaste, créatif, persévérant et ambitieux, je m'investis pleinement dans ma formation.</p>
+            <div style="text-align:center;margin-top:2rem;display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;">
+                <a href="https://www.linkedin.com/in/aboubacarkone" target="_blank" style="display:inline-block;padding:0.8rem 1.5rem;background:#0077b5;color:white;text-decoration:none;border-radius:10px;font-weight:bold;transition:all 0.3s;box-shadow:0 5px 15px rgba(0,119,181,0.3);">💼 Profil LinkedIn</a>
+                <a href="#" onclick="alert('Veuillez télécharger votre CV et le placer dans le même dossier que ce fichier HTML'); return false;" style="display:inline-block;padding:0.8rem 1.5rem;background:linear-gradient(45deg,#00d4ff,#00ff88);color:#000;text-decoration:none;border-radius:10px;font-weight:bold;">📄 Télécharger mon CV</a>
             </div>
         </div>
-    </section>
+        <div class="about-card">
+            <div class="about-icon">🎯</div>
+            <h3>Mon Projet Professionnel</h3>
+            <p class="about-text">Mon projet professionnel consiste à évoluer dans le domaine de l'informatique, en commençant par mon BTS SIO en alternance, où je me forme en tant que technicien support et administrateur réseau. Mon objectif à moyen terme est de poursuivre mes études vers un Master en Cybersécurité, afin de devenir expert dans la protection des systèmes informatiques. À long terme, je vise à occuper un poste stratégique, comme celui de responsable de la sécurité des systèmes d'information (RSSI), pour sécuriser les infrastructures et anticiper les cybermenaces.</p>
+        </div>
+    </div>
+</section>
 
-    <!-- Compétences -->
-    <section id="competences" class="section">
-        <h2 class="section-title">Compétences Techniques</h2>
-        <div class="skills-grid">
-            <div class="skill-card">
-                <div class="skill-icon">🖥️</div>
-                <h3>Administration Système</h3>
-                <p>Windows Server, Linux, Active Directory, GPO, DNS, DHCP</p>
+<!-- Compétences -->
+<section id="competences" class="section">
+    <h2 class="section-title">Compétences Techniques</h2>
+    <div class="skills-grid">
+        <div class="skill-card"><div class="skill-icon">🖥️</div><h3>Administration Système</h3><p>Windows Server, Linux, Active Directory, GPO, DNS, DHCP</p></div>
+        <div class="skill-card"><div class="skill-icon">🌐</div><h3>Infrastructure Réseau</h3><p>Cisco, VLAN, Routage, Commutation, Firewall, VPN</p></div>
+        <div class="skill-card"><div class="skill-icon">🔒</div><h3>Sécurité Informatique</h3><p>Pare-feu, Antivirus, Chiffrement, Audit de sécurité</p></div>
+        <div class="skill-card"><div class="skill-icon">📊</div><h3>Supervision & Monitoring</h3><p>PRTG, Nagios, Zabbix, Analyse de performances</p></div>
+        <div class="skill-card"><div class="skill-icon">☁️</div><h3>Cloud & Virtualisation</h3><p>VMware, Hyper-V, AWS, Azure, Docker</p></div>
+        <div class="skill-card"><div class="skill-icon">🛠️</div><h3>Support & Maintenance</h3><p>Help Desk, Ticketing, Documentation technique</p></div>
+    </div>
+</section>
+
+<!-- Projets Entreprise -->
+<section id="projets" class="section">
+    <h2 class="section-title">Projets Réalisés en Entreprise</h2>
+    <div class="projects-grid">
+        <div class="project-card">
+            <h3>Serveur de Messagerie avec Active Directory</h3>
+            <p>Installation et configuration complète d'un serveur mail Linux (Postfix + Dovecot) intégré à Active Directory. Gestion des utilisateurs via LDAP, configuration IMAP/POP3/SMTP, et mise en place de Thunderbird côté client.</p>
+            <div class="project-tag">Postfix</div><div class="project-tag">Dovecot</div><div class="project-tag">Active Directory</div><div class="project-tag">LDAP</div><div class="project-tag">Ubuntu Server</div><div class="project-tag">Thunderbird</div>
+        </div>
+        <div class="project-card">
+            <h3>Cluster Haute Disponibilité Linux Heartbeat</h3>
+            <p>Mise en place d'un cluster de haute disponibilité avec Linux Heartbeat. Configuration de 2 nœuds + 1 client, détection automatique de panne, surveillance de vie (liveness) et basculement automatique des services Apache2.</p>
+            <div class="project-tag">Linux Heartbeat</div><div class="project-tag">Haute Disponibilité</div><div class="project-tag">Clustering</div><div class="project-tag">Apache2</div><div class="project-tag">Ubuntu 22.04</div><div class="project-tag">Failover</div>
+        </div>
+        <div class="project-card">
+            <h3>Déploiement Multi-Sites</h3>
+            <p>Masterisation et déploiement de PC sur l'ensemble des sites de Gagneraud Construction (Normandie, IDF, Est et Ouest France). Support à distance via TeamViewer et maintenance du parc informatique.</p>
+            <div class="project-tag">Masterisation</div><div class="project-tag">TeamViewer</div><div class="project-tag">Support Multi-Sites</div>
+        </div>
+        <div class="project-card">
+            <h3>Support Télécom & Sécurité</h3>
+            <p>Chez Paritel : tests de lignes Orange, réparation d'alarmes via Power Manager, gestion de caméras RXCamView et support utilisateur via système de ticketing.</p>
+            <div class="project-tag">Tests Lignes Orange</div><div class="project-tag">Power Manager</div><div class="project-tag">RXCamView</div><div class="project-tag">Ticketing Kairos</div>
+        </div>
+    </div>
+</section>
+
+<!-- Projets École -->
+<section id="projets-ecole" class="section">
+    <h2 class="section-title">Projets Réalisés à l'École</h2>
+    <div class="projects-grid">
+
+        <div class="project-card">
+            <h3>🖥️ Active Directory sous Windows Server 2019</h3>
+            <p>Mise en place d'une topologie Active Directory complète : installation des rôles AD-DS, DNS, DHCP, WDS. Configuration des OU, groupes (GG/DL), utilisateurs via scripts PowerShell, profils itinérants, GPO, mappage de lecteurs et stratégie AGDLP.</p>
+            <div class="project-tag">Windows Server 2019</div><div class="project-tag">Active Directory</div><div class="project-tag">DNS / DHCP</div><div class="project-tag">WDS</div><div class="project-tag">PowerShell</div><div class="project-tag">GPO / AGDLP</div>
+            <div style="margin-top:1.2rem;"><a href="https://docs.google.com/document/d/16MJGYoGJNyY8h-2aPDC_xduXUYyttCxx/edit?usp=drive_link" target="_blank" class="doc-btn">📄 Voir le document</a></div>
+        </div>
+
+        <div class="project-card">
+            <h3>⚖️ Load Balancing avec HAProxy</h3>
+            <p>Déploiement d'un équilibreur de charge HAProxy sur Linux avec 2 serveurs web Apache2 en backend. Configuration du routage Round Robin, mise en place d'IPtables pour le firewall et SSH, configuration réseau Host-Only/NAT et tests de basculement.</p>
+            <div class="project-tag">HAProxy</div><div class="project-tag">Apache2</div><div class="project-tag">IPtables</div><div class="project-tag">Ubuntu Linux</div><div class="project-tag">Load Balancing</div>
+            <div style="margin-top:1.2rem;"><a href="https://docs.google.com/document/d/1iPtUTemrdxPktkyKtJ6fn3hEQMVlwr8Nr8ANEU7hEfw/edit?usp=drive_link" target="_blank" class="doc-btn">📄 Voir le document</a></div>
+        </div>
+
+        <div class="project-card">
+            <h3>💓 Cluster Haute Disponibilité Linux Heartbeat</h3>
+            <p>Installation et configuration d'un cluster HA avec Linux Heartbeat sur Ubuntu 22.04 : 2 nœuds + 1 client, configuration des fichiers ha.cf, authkeys et haresources, IP virtuelle flottante, test de panne avec basculement automatique validé.</p>
+            <div class="project-tag">Linux Heartbeat</div><div class="project-tag">Haute Disponibilité</div><div class="project-tag">Apache2</div><div class="project-tag">Ubuntu 22.04</div><div class="project-tag">Failover</div>
+            <div style="margin-top:1.2rem;"><a href="https://docs.google.com/document/d/1LJnCRr_iw0QwSaoD5HBrRjgoqkB3-QL07xasihANPF8/edit?usp=drive_link" target="_blank" class="doc-btn">📄 Voir le document</a></div>
+        </div>
+
+        <div class="project-card">
+            <h3>🔐 Serveur Web HTTPS avec certificat SSL</h3>
+            <p>Configuration d'un serveur Apache2 avec SSL/TLS sous Ubuntu : activation des modules SSL/rewrite, génération d'un certificat auto-signé avec OpenSSL, configuration des VirtualHosts HTTP (port 80) et HTTPS (port 443) avec redirection automatique.</p>
+            <div class="project-tag">Apache2</div><div class="project-tag">OpenSSL</div><div class="project-tag">HTTPS / SSL</div><div class="project-tag">Ubuntu</div><div class="project-tag">VirtualHost</div>
+            <div style="margin-top:1.2rem;"><a href="https://docs.google.com/document/d/1ta4n35H1lfMYZsn7gOC5hw4AOuFYszCbUC18m4-Enzo/edit?usp=drive_link" target="_blank" class="doc-btn">📄 Voir le document</a></div>
+        </div>
+
+        <div class="project-card">
+            <h3>📊 Supervision avec Zabbix 7.2</h3>
+            <p>Déploiement complet de Zabbix 7.2 sur Ubuntu avec MySQL : installation serveur/frontend/agent, configuration des hôtes Windows et Linux, mise en place d'un script de sauvegarde automatique via cron avec rétention de 14 jours et conservation des 5 dernières sauvegardes.</p>
+            <div class="project-tag">Zabbix 7.2</div><div class="project-tag">MySQL</div><div class="project-tag">Monitoring</div><div class="project-tag">Bash / Cron</div><div class="project-tag">Sauvegarde BDD</div>
+            <div style="margin-top:1.2rem;"><a href="https://docs.google.com/document/d/1Zio6e4rcy4eiDgq0dbMQPUC2XTx1U5J1/edit?usp=drive_link" target="_blank" class="doc-btn">📄 Voir le document</a></div>
+        </div>
+
+        <div class="project-card">
+            <h3>⚙️ Automatisation Active Directory via PowerShell</h3>
+            <p>Scripts PowerShell complets pour automatiser la configuration d'un domaine Windows : adressage IP statique, promotion en contrôleur de domaine, zones DNS directe/inversée, étendue DHCP, profils itinérants, dossiers de base et gestion de quotas.</p>
+            <div class="project-tag">PowerShell</div><div class="project-tag">AD-DS</div><div class="project-tag">DNS / DHCP</div><div class="project-tag">Quotas</div><div class="project-tag">Automatisation</div>
+            <div style="margin-top:1.2rem;"><a href="https://docs.google.com/document/d/1WxtvgxN2Ssyihh0jOQXY4OgWLtKtxWOx7ywvDvsOROM/edit?usp=drive_link" target="_blank" class="doc-btn">📄 Voir le document</a></div>
+        </div>
+
+        <div class="project-card">
+            <h3>📧 Projet E6 – Serveur Mail Postfix</h3>
+            <p>Mise en place d'un serveur de messagerie sous Linux Ubuntu 24.04 avec Postfix (SMTP) et Dovecot (IMAP/Maildir). Configuration du domaine E6.local, test via Thunderbird, sécurisation avec restriction des relais, authentification, IMAPS et HTTPS.</p>
+            <div class="project-tag">Postfix</div><div class="project-tag">Dovecot</div><div class="project-tag">SMTP / IMAP</div><div class="project-tag">Thunderbird</div><div class="project-tag">Ubuntu 24.04</div><div class="project-tag">Sécurité mail</div>
+            <div style="margin-top:1.2rem;"><a href="https://docs.google.com/document/d/1YIkjVszq4jnYLsxhp7WK0nS1WoFBNthia0xx21QdWSY/edit?usp=drive_link" target="_blank" class="doc-btn">📄 Voir le document</a></div>
+        </div>
+
+        <div class="project-card">
+            <h3>☁️ Projet E6 – Nextcloud avec Active Directory</h3>
+            <p>Déploiement d'une plateforme de stockage Nextcloud sous Ubuntu avec Apache, PHP et MariaDB. Intégration à l'Active Directory via LDAP pour centraliser la gestion des comptes utilisateurs et permettre un accès unique aux services depuis un navigateur web.</p>
+            <div class="project-tag">Nextcloud</div><div class="project-tag">Apache / PHP</div><div class="project-tag">MariaDB</div><div class="project-tag">LDAP</div><div class="project-tag">Active Directory</div><div class="project-tag">Ubuntu</div>
+            <div style="margin-top:1.2rem;"><a href="https://docs.google.com/document/d/18IelxUfn-5yWbv93xx1QQJFse-VWS8-fXQnZ2gvNNbs/edit?usp=drive_link" target="_blank" class="doc-btn">📄 Voir le document</a></div>
+        </div>
+
+    </div>
+</section>
+
+<!-- Parcours -->
+<section id="parcours" class="section">
+    <h2 class="section-title">Mon Parcours</h2>
+    <div class="timeline">
+        <div class="timeline-item">
+            <div class="timeline-content">
+                <h3>Septembre 2025 - Présent | Gagneraud Construction</h3>
+                <p><strong>Technicien Support Informatique (2ème année BTS SIO)</strong></p>
+                <p>• Masterisation et déploiement de PC<br>• Support informatique multi-sites (Normandie, Nord Paris Gennevilliers, Est et Ouest de la France)<br>• Prise en main à distance via TeamViewer<br>• Maintenance et dépannage du parc informatique</p>
             </div>
-            <div class="skill-card">
-                <div class="skill-icon">🌐</div>
-                <h3>Infrastructure Réseau</h3>
-                <p>Cisco, VLAN, Routage, Commutation, Firewall, VPN</p>
+            <div class="timeline-dot"></div>
+        </div>
+        <div class="timeline-item">
+            <div class="timeline-content">
+                <h3>Septembre 2024 - avril 2025 | Paritel</h3>
+                <p><strong>Technicien Support (1ère année BTS SIO)</strong></p>
+                <p>• Tests de lignes Orange<br>• Réparation d'alarmes via logiciel Power Manager<br>• Gestion des caméras via RXCamView<br>• Support utilisateur sur outil de ticketing<br>• Maintenance et résolution d'incidents techniques</p>
             </div>
-            <div class="skill-card">
-                <div class="skill-icon">🔒</div>
-                <h3>Sécurité Informatique</h3>
-                <p>Pare-feu, Antivirus, Chiffrement, Audit de sécurité</p>
+            <div class="timeline-dot"></div>
+        </div>
+    </div>
+</section>
+
+<!-- Veille Technologique -->
+<section id="veille" class="section">
+    <h2 class="section-title">Veille Technologique</h2>
+    <div class="veille-wrapper">
+        <div class="vt-header-bar">
+            <div>
+                <div class="vt-title-bar">
+                    <span class="vt-live-dot"></span>
+                    Flux RSS en direct
+                    <span class="vt-status-text" id="vt-status">Chargement...</span>
+                </div>
             </div>
-            <div class="skill-card">
-                <div class="skill-icon">📊</div>
-                <h3>Supervision & Monitoring</h3>
-                <p>PRTG, Nagios, Zabbix, Analyse de performances</p>
-            </div>
-            <div class="skill-card">
-                <div class="skill-icon">☁️</div>
-                <h3>Cloud & Virtualisation</h3>
-                <p>VMware, Hyper-V, AWS, Azure, Docker</p>
-            </div>
-            <div class="skill-card">
-                <div class="skill-icon">🛠️</div>
-                <h3>Support & Maintenance</h3>
-                <p>Help Desk, Ticketing, Documentation technique</p>
+            <button class="vt-refresh-btn" id="vt-refresh-btn" onclick="vtLoadFeeds()">🔄 Actualiser</button>
+        </div>
+        <div class="vt-stats-row" id="vt-stats" style="display:none;">
+            <div class="vt-stat-box"><div class="vt-stat-num" id="vt-stat-total">0</div><div class="vt-stat-lbl">Articles récupérés</div></div>
+            <div class="vt-stat-box"><div class="vt-stat-num" id="vt-stat-secu">0</div><div class="vt-stat-lbl">Cybersécurité</div></div>
+            <div class="vt-stat-box"><div class="vt-stat-num" id="vt-stat-ia">0</div><div class="vt-stat-lbl">IA & Cloud</div></div>
+            <div class="vt-stat-box"><div class="vt-stat-num" id="vt-stat-today">0</div><div class="vt-stat-lbl">Aujourd'hui</div></div>
+        </div>
+        <div class="vt-sources-bar">
+            <div class="vt-sources-label">Sources actives</div>
+            <div class="vt-sources-list">
+                <div class="vt-src-pill"><span class="vt-src-color" style="background:#378ADD;"></span>ZDNet FR</div>
+                <div class="vt-src-pill"><span class="vt-src-color" style="background:#3B6D11;"></span>LeMagIT</div>
+                <div class="vt-src-pill"><span class="vt-src-color" style="background:#E24B4A;"></span>CERT-FR</div>
+                <div class="vt-src-pill"><span class="vt-src-color" style="background:#7F77DD;"></span>01net</div>
+                <div class="vt-src-pill"><span class="vt-src-color" style="background:#BA7517;"></span>Silicon.fr</div>
             </div>
         </div>
-    </section>
-
-    <!-- Projets -->
-    <section id="projets" class="section">
-        <h2 class="section-title">Projets Réalisés en Entreprise</h2>
-        <div class="projects-grid">
-            <div class="project-card">
-                <h3>Serveur de Messagerie avec Active Directory</h3>
-                <p>Installation et configuration complète d'un serveur mail Linux (Postfix + Dovecot) intégré à Active Directory. Gestion des utilisateurs via LDAP, configuration IMAP/POP3/SMTP, et mise en place de Thunderbird côté client.</p>
-                <div class="project-tag">Postfix</div>
-                <div class="project-tag">Dovecot</div>
-                <div class="project-tag">Active Directory</div>
-                <div class="project-tag">LDAP</div>
-                <div class="project-tag">Ubuntu Server</div>
-                <div class="project-tag">Thunderbird</div>
-                <div style="margin-top: 1.5rem; text-align: center;">
-                    <a href="#" onclick="alert('Veuillez placer le fichier svrmail.pdf dans le même dossier que ce fichier HTML, puis remplacez le # par svrmail.pdf'); return false;" style="display: inline-block; padding: 0.6rem 1.2rem; background: rgba(0, 212, 255, 0.2); color: #00d4ff; text-decoration: none; border-radius: 8px; border: 1px solid #00d4ff; font-size: 0.9rem; transition: all 0.3s ease;">
-                        📄 Voir la documentation complète
-                    </a>
-                </div>
-            </div>
-            <div class="project-card">
-                <h3>Cluster Haute Disponibilité Linux Heartbeat</h3>
-                <p>Mise en place d'un cluster de haute disponibilité avec Linux Heartbeat. Configuration de 2 nœuds + 1 client, détection automatique de panne, surveillance de vie (liveness) et basculement automatique des services Apache2.</p>
-                <div class="project-tag">Linux Heartbeat</div>
-                <div class="project-tag">Haute Disponibilité</div>
-                <div class="project-tag">Clustering</div>
-                <div class="project-tag">Apache2</div>
-                <div class="project-tag">Ubuntu 22.04</div>
-                <div class="project-tag">Failover</div>
-                <div style="margin-top: 1.5rem; text-align: center;">
-                    <a href="#" onclick="alert('Veuillez placer le fichier Heartbeat.pdf dans le même dossier que ce fichier HTML, puis remplacez le # par Heartbeat.pdf'); return false;" style="display: inline-block; padding: 0.6rem 1.2rem; background: rgba(0, 212, 255, 0.2); color: #00d4ff; text-decoration: none; border-radius: 8px; border: 1px solid #00d4ff; font-size: 0.9rem; transition: all 0.3s ease;">
-                        📄 Voir la documentation complète
-                    </a>
-                </div>
-            </div>
-            <div class="project-card">
-                <h3>Déploiement Multi-Sites</h3>
-                <p>Masterisation et déploiement de PC sur l'ensemble des sites de Gagneraud Construction (Normandie, IDF, Est et Ouest France). Support à distance via TeamViewer et maintenance du parc informatique.</p>
-                <div class="project-tag">Masterisation</div>
-                <div class="project-tag">TeamViewer</div>
-                <div class="project-tag">Support Multi-Sites</div>
-            </div>
-            <div class="project-card">
-                <h3>Support Télécom & Sécurité</h3>
-                <p>Chez Paritel : tests de lignes Orange, réparation d'alarmes via Power Manager, gestion de caméras RXCamView et support utilisateur via système de ticketing.</p>
-                <div class="project-tag">Tests Lignes Orange</div>
-                <div class="project-tag">Power Manager</div>
-                <div class="project-tag">RXCamView</div>
-                <div class="project-tag">Ticketing Kairos</div>
-            </div>
+        <div class="vt-filters-row">
+            <div class="vt-filter-chip active" data-cat="all" onclick="vtFilter(this)">Tout voir</div>
+            <div class="vt-filter-chip" data-cat="Sécurité" onclick="vtFilter(this)">🔒 Cybersécurité</div>
+            <div class="vt-filter-chip" data-cat="Réseau" onclick="vtFilter(this)">🌐 Réseau</div>
+            <div class="vt-filter-chip" data-cat="Cloud" onclick="vtFilter(this)">☁️ Cloud</div>
+            <div class="vt-filter-chip" data-cat="IA" onclick="vtFilter(this)">🤖 IA</div>
+            <div class="vt-filter-chip" data-cat="Système" onclick="vtFilter(this)">🖥️ Système</div>
         </div>
-    </section>
-
-    <!-- Parcours -->
-    <section id="parcours" class="section">
-        <h2 class="section-title">Mon Parcours</h2>
-        <div class="timeline">
-            <div class="timeline-item">
-                <div class="timeline-content">
-                    <h3>Septembre 2025 - Présent | Gagneraud Construction</h3>
-                    <p><strong>Technicien Support Informatique (2ème année BTS SIO)</strong></p>
-                    <p>• Masterisation et déploiement de PC<br>
-                    • Support informatique multi-sites (Normandie, Nord Paris Gennevilliers, Est et Ouest de la France)<br>
-                    • Prise en main à distance via TeamViewer<br>
-                    • Maintenance et dépannage du parc informatique</p>
-                </div>
-                <div class="timeline-dot"></div>
-            </div>
-            <div class="timeline-item">
-                <div class="timeline-content">
-                    <h3>Septembre 2024 - avril 2025 | Paritel</h3>
-                    <p><strong>Technicien Support (1ère année BTS SIO)</strong></p>
-                    <p>• Tests de lignes Orange<br>
-                    • Réparation d'alarmes via logiciel Power Manager<br>
-                    • Gestion des caméras via RXCamView<br>
-                    • Support utilisateur sur outil de ticketing<br>
-                    • Maintenance et résolution d'incidents techniques</p>
-                </div>
-                <div class="timeline-dot"></div>
-            </div>
-            <div class="project-card">
-                <h3>📧 Projet E6 – Serveur Mail Postfix</h3>
-                <p>Mise en place d'un serveur de messagerie sous Linux Ubuntu 24.04 avec Postfix (SMTP) et Dovecot (IMAP/Maildir). Configuration du domaine E6.local, test via Thunderbird, sécurisation avec restriction des relais, authentification, IMAPS et HTTPS.</p>
-                <div class="project-tag">Postfix</div>
-                <div class="project-tag">Dovecot</div>
-                <div class="project-tag">SMTP / IMAP</div>
-                <div class="project-tag">Thunderbird</div>
-                <div class="project-tag">Ubuntu 24.04</div>
-                <div class="project-tag">Sécurité mail</div>
-                <div style="margin-top:1.2rem;">
-                    <a href="https://docs.google.com/document/d/1YIkjVszq4jnYLsxhp7WK0nS1WoFBNthia0xx21QdWSY/edit?usp=sharing" target="_blank" class="doc-btn">📄 Voir le document</a>
-                </div>
-            </div>
-
-            <div class="project-card">
-                <h3>☁️ Projet E6 – Nextcloud avec Active Directory</h3>
-                <p>Déploiement d'une plateforme de stockage Nextcloud sous Ubuntu avec Apache, PHP et MariaDB. Intégration à l'Active Directory via LDAP pour centraliser la gestion des comptes utilisateurs et permettre un accès unique aux services depuis un navigateur web.</p>
-                <div class="project-tag">Nextcloud</div>
-                <div class="project-tag">Apache / PHP</div>
-                <div class="project-tag">MariaDB</div>
-                <div class="project-tag">LDAP</div>
-                <div class="project-tag">Active Directory</div>
-                <div class="project-tag">Ubuntu</div>
-                <div style="margin-top:1.2rem;">
-                    <a href="https://docs.google.com/document/d/18IelxUfn-5yWbv93xx1QQJFse-VWS8-fXQnZ2gvNNbs/edit?usp=sharing" class="doc-btn">📄 Voir le document</a>
-                </div>
-            </div>
-
+        <div class="vt-articles-grid" id="vt-grid">
+            <div class="vt-skeleton"></div><div class="vt-skeleton"></div><div class="vt-skeleton"></div><div class="vt-skeleton"></div>
         </div>
-    </section>
-
-    <!-- =============================================
-         VEILLE TECHNOLOGIQUE - Section unifiée avec RSS
-    ============================================= -->
-    <section id="veille" class="section">
-        <h2 class="section-title">Veille Technologique</h2>
-
-        <div class="veille-wrapper">
-
-            <!-- En-tête du dashboard -->
-            <div class="vt-header-bar">
-                <div>
-                    <div class="vt-title-bar">
-                        <span class="vt-live-dot"></span>
-                        Flux RSS en direct
-                        <span class="vt-status-text" id="vt-status">Chargement...</span>
-                    </div>
-                </div>
-                <button class="vt-refresh-btn" id="vt-refresh-btn" onclick="vtLoadFeeds()">
-                    🔄 Actualiser
-                </button>
-            </div>
-
-            <!-- Compteurs -->
-            <div class="vt-stats-row" id="vt-stats" style="display:none;">
-                <div class="vt-stat-box">
-                    <div class="vt-stat-num" id="vt-stat-total">0</div>
-                    <div class="vt-stat-lbl">Articles récupérés</div>
-                </div>
-                <div class="vt-stat-box">
-                    <div class="vt-stat-num" id="vt-stat-secu">0</div>
-                    <div class="vt-stat-lbl">Cybersécurité</div>
-                </div>
-                <div class="vt-stat-box">
-                    <div class="vt-stat-num" id="vt-stat-ia">0</div>
-                    <div class="vt-stat-lbl">IA & Cloud</div>
-                </div>
-                <div class="vt-stat-box">
-                    <div class="vt-stat-num" id="vt-stat-today">0</div>
-                    <div class="vt-stat-lbl">Aujourd'hui</div>
-                </div>
-            </div>
-
-            <!-- Sources -->
-            <div class="vt-sources-bar">
-                <div class="vt-sources-label">Sources actives</div>
-                <div class="vt-sources-list">
-                    <div class="vt-src-pill"><span class="vt-src-color" style="background:#378ADD;"></span>ZDNet FR</div>
-                    <div class="vt-src-pill"><span class="vt-src-color" style="background:#3B6D11;"></span>LeMagIT</div>
-                    <div class="vt-src-pill"><span class="vt-src-color" style="background:#E24B4A;"></span>CERT-FR</div>
-                    <div class="vt-src-pill"><span class="vt-src-color" style="background:#7F77DD;"></span>01net</div>
-                    <div class="vt-src-pill"><span class="vt-src-color" style="background:#BA7517;"></span>Silicon.fr</div>
-                </div>
-            </div>
-
-            <!-- Filtres par catégorie -->
-            <div class="vt-filters-row">
-                <div class="vt-filter-chip active" data-cat="all" onclick="vtFilter(this)">Tout voir</div>
-                <div class="vt-filter-chip" data-cat="Sécurité" onclick="vtFilter(this)">🔒 Cybersécurité</div>
-                <div class="vt-filter-chip" data-cat="Réseau" onclick="vtFilter(this)">🌐 Réseau</div>
-                <div class="vt-filter-chip" data-cat="Cloud" onclick="vtFilter(this)">☁️ Cloud</div>
-                <div class="vt-filter-chip" data-cat="IA" onclick="vtFilter(this)">🤖 IA</div>
-                <div class="vt-filter-chip" data-cat="Système" onclick="vtFilter(this)">🖥️ Système</div>
-            </div>
-
-            <!-- Grille d'articles -->
-            <div class="vt-articles-grid" id="vt-grid">
-                <div class="vt-skeleton"></div>
-                <div class="vt-skeleton"></div>
-                <div class="vt-skeleton"></div>
-                <div class="vt-skeleton"></div>
-            </div>
-
-            <!-- Lien tableau de synthèse -->
-            <div class="vt-tableau-link">
-                <a href="https://docs.google.com/spreadsheets/d/1PYfG_wdtm_rrbBW_4Rd6X3xQ1K_UUDbD/edit?gid=478715316#gid=478715316"
-                   target="_blank" class="cta-button" style="font-size: 1rem;">
-                    📈 Consulter mon tableau de Synthèse
-                </a>
-            </div>
-
+        <div class="vt-tableau-link">
+            <a href="https://docs.google.com/spreadsheets/d/1PYfG_wdtm_rrbBW_4Rd6X3xQ1K_UUDbD/edit?gid=478715316#gid=478715316" target="_blank" class="cta-button" style="font-size:1rem;">📈 Consulter mon tableau de Synthèse</a>
         </div>
-    </section>
+    </div>
+</section>
 
-    <!-- Projets Scolaires -->
-    <section id="projets-ecole" class="section">
-        <h2 class="section-title">Projets Réalisés à l'École</h2>
-        <div class="projects-grid">
+<!-- Contact -->
+<section id="contact" class="section">
+    <h2 class="section-title">Me Contacter</h2>
+    <div class="contact-form">
+        <form id="contactForm">
+            <div class="form-group"><input type="text" id="name" placeholder="Votre nom" required></div>
+            <div class="form-group"><input type="email" id="email" placeholder="Votre email" required></div>
+            <div class="form-group"><textarea id="message" placeholder="Votre message" rows="6" required></textarea></div>
+            <button type="submit" class="cta-button">Envoyer le message</button>
+        </form>
+        <div id="formStatus" style="margin-top:1rem;text-align:center;display:none;"></div>
+    </div>
+    <div class="contact-info" style="margin-top:3rem;text-align:center;">
+        <p style="font-size:1.1rem;color:#a0a0a0;">Ou contactez-moi directement :</p>
+        <a href="mailto:aboubcarkone@gmail.com" class="contact-link">📧 aboubcarkone@gmail.com</a>
+    </div>
+</section>
 
-            <div class="project-card">
-                <h3>🖥️ Active Directory sous Windows Server 2019</h3>
-                <p>Mise en place d'une topologie Active Directory complète : installation des rôles AD-DS, DNS, DHCP, WDS. Configuration des OU, groupes (GG/DL), utilisateurs via scripts PowerShell, profils itinérants, GPO, mappage de lecteurs et stratégie AGDLP.</p>
-                <div class="project-tag">Windows Server 2019</div>
-                <div class="project-tag">Active Directory</div>
-                <div class="project-tag">DNS / DHCP</div>
-                <div class="project-tag">WDS</div>
-                <div class="project-tag">PowerShell</div>
-                <div class="project-tag">GPO / AGDLP</div>
-                <div style="margin-top:1.2rem;">
-                    <a href="https://docs.google.com/document/d/16MJGYoGJNyY8h-2aPDC_xduXUYyttCxx/edit?usp=drive_link" target="_blank" class="doc-btn">📄 Voir le document</a>
-                </div>
-            </div>
+<footer class="footer">
+    <p>&copy; 2024 Aboubacar Kone - Portfolio BTS SIO SISR | Tous droits réservés</p>
+</footer>
 
-            <div class="project-card">
-                <h3>⚖️ Load Balancing avec HAProxy</h3>
-                <p>Déploiement d'un équilibreur de charge HAProxy sur Linux avec 2 serveurs web Apache2 en backend. Configuration du routage Round Robin, mise en place d'IPtables pour le firewall et SSH, configuration réseau Host-Only/NAT et tests de basculement.</p>
-                <div class="project-tag">HAProxy</div>
-                <div class="project-tag">Apache2</div>
-                <div class="project-tag">IPtables</div>
-                <div class="project-tag">Ubuntu Linux</div>
-                <div class="project-tag">Load Balancing</div>
-                <div style="margin-top:1.2rem;">
-                    <a href="https://docs.google.com/document/d/1iPtUTemrdxPktkyKtJ6fn3hEQMVlwr8Nr8ANEU7hEfw/edit?usp=drive_link" target="_blank" class="doc-btn">📄 Voir le document</a>
-                </div>
-            </div>
+<script>
+    window.addEventListener('scroll', () => {
+        const scrolled = window.pageYOffset;
+        document.querySelector('.hero').style.transform = `translateY(${scrolled * -0.5}px)`;
+        document.querySelector('.navbar').style.background = scrolled > 100 ? 'rgba(10,14,39,0.98)' : 'rgba(10,14,39,0.95)';
+    });
 
-            <div class="project-card">
-                <h3>💓 Cluster Haute Disponibilité Linux Heartbeat</h3>
-                <p>Installation et configuration d'un cluster HA avec Linux Heartbeat sur Ubuntu 22.04 : 2 nœuds + 1 client, configuration des fichiers ha.cf, authkeys et haresources, IP virtuelle flottante, test de panne avec basculement automatique validé.</p>
-                <div class="project-tag">Linux Heartbeat</div>
-                <div class="project-tag">Haute Disponibilité</div>
-                <div class="project-tag">Apache2</div>
-                <div class="project-tag">Ubuntu 22.04</div>
-                <div class="project-tag">Failover</div>
-                <div style="margin-top:1.2rem;">
-                    <a href="https://docs.google.com/document/d/1LJnCRr_iw0QwSaoD5HBrRjgoqkB3-QL07xasihANPF8/edit?usp=drive_link" target="_blank" class="doc-btn">📄 Voir le document</a>
-                </div>
-            </div>
+    function createParticles() {
+        const c = document.querySelector('.particles');
+        for (let i = 0; i < 50; i++) {
+            const p = document.createElement('div');
+            p.className = 'particle';
+            p.style.left = Math.random() * 100 + '%';
+            p.style.animationDelay = Math.random() * 6 + 's';
+            p.style.animationDuration = (Math.random() * 3 + 3) + 's';
+            c.appendChild(p);
+        }
+    }
 
-            <div class="project-card">
-                <h3>🔐 Serveur Web HTTPS avec certificat SSL</h3>
-                <p>Configuration d'un serveur Apache2 avec SSL/TLS sous Ubuntu : activation des modules SSL/rewrite, génération d'un certificat auto-signé avec OpenSSL, configuration des VirtualHosts HTTP (port 80) et HTTPS (port 443) avec redirection automatique.</p>
-                <div class="project-tag">Apache2</div>
-                <div class="project-tag">OpenSSL</div>
-                <div class="project-tag">HTTPS / SSL</div>
-                <div class="project-tag">Ubuntu</div>
-                <div class="project-tag">VirtualHost</div>
-                <div style="margin-top:1.2rem;">
-                    <a href="https://docs.google.com/document/d/1ta4n35H1lfMYZsn7gOC5hw4AOuFYszCbUC18m4-Enzo/edit?usp=drive_link" target="_blank" class="doc-btn">📄 Voir le document</a>
-                </div>
-            </div>
-
-            <div class="project-card">
-                <h3>📊 Supervision avec Zabbix 7.2</h3>
-                <p>Déploiement complet de Zabbix 7.2 sur Ubuntu avec MySQL : installation serveur/frontend/agent, configuration des hôtes Windows et Linux, mise en place d'un script de sauvegarde automatique via cron avec rétention de 14 jours et conservation des 5 dernières sauvegardes.</p>
-                <div class="project-tag">Zabbix 7.2</div>
-                <div class="project-tag">MySQL</div>
-                <div class="project-tag">Monitoring</div>
-                <div class="project-tag">Bash / Cron</div>
-                <div class="project-tag">Sauvegarde BDD</div>
-                <div style="margin-top:1.2rem;">
-                    <a href="https://docs.google.com/document/d/1Zio6e4rcy4eiDgq0dbMQPUC2XTx1U5J1/edit?usp=drive_link" target="_blank" class="doc-btn">📄 Voir le document</a>
-                </div>
-            </div>
-
-            <div class="project-card">
-                <h3>⚙️ Automatisation Active Directory via PowerShell</h3>
-                <p>Scripts PowerShell complets pour automatiser la configuration d'un domaine Windows : adressage IP statique, promotion en contrôleur de domaine, zones DNS directe/inversée, étendue DHCP, profils itinérants, dossiers de base et gestion de quotas via le Gestionnaire de ressources.</p>
-                <div class="project-tag">PowerShell</div>
-                <div class="project-tag">AD-DS</div>
-                <div class="project-tag">DNS / DHCP</div>
-                <div class="project-tag">Quotas</div>
-                <div class="project-tag">Automatisation</div>
-                <div style="margin-top:1.2rem;">
-                    <a href="https://docs.google.com/document/d/1WxtvgxN2Ssyihh0jOQXY4OgWLtKtxWOx7ywvDvsOROM/edit?usp=drive_link" target="_blank" class="doc-btn">📄 Voir le document</a>
-                </div>
-            </div>
-
-        </div>
-    </section>
-
-    <!-- Contact -->
-    <section id="contact" class="section">
-        <h2 class="section-title">Me Contacter</h2>
-        <div class="contact-form">
-            <form id="contactForm">
-                <div class="form-group">
-                    <input type="text" id="name" placeholder="Votre nom" required>
-                </div>
-                <div class="form-group">
-                    <input type="email" id="email" placeholder="Votre email" required>
-                </div>
-                <div class="form-group">
-                    <textarea id="message" placeholder="Votre message" rows="6" required></textarea>
-                </div>
-                <button type="submit" class="cta-button">Envoyer le message</button>
-            </form>
-            <div id="formStatus" style="margin-top: 1rem; text-align: center; display: none;"></div>
-        </div>
-        <div class="contact-info" style="margin-top: 3rem; text-align: center;">
-            <p style="font-size: 1.1rem; color: #a0a0a0;">Ou contactez-moi directement :</p>
-            <a href="mailto:aboubcarkone@gmail.com" class="contact-link">
-                📧 aboubcarkone@gmail.com
-            </a>
-        </div>
-    </section>
-
-    <!-- Footer -->
-    <footer class="footer">
-        <p>&copy; 2024 Aboubacar Kone - Portfolio BTS SIO SISR | Tous droits réservés</p>
-    </footer>
-
-    <script>
-        /* =============================================
-           JAVASCRIPT GÉNÉRAL DU PORTFOLIO
-        ============================================= */
-
-        // Effet parallaxe au scroll
-        window.addEventListener('scroll', () => {
-            const scrolled = window.pageYOffset;
-            const rate = scrolled * -0.5;
-            document.querySelector('.hero').style.transform = `translateY(${rate}px)`;
+    document.querySelectorAll('a[href^="#"]').forEach(a => {
+        a.addEventListener('click', function(e) {
+            e.preventDefault(); e.stopPropagation();
+            const t = document.querySelector(this.getAttribute('href'));
+            if (t) window.scrollTo({ top: t.offsetTop - document.querySelector('.navbar').offsetHeight, behavior: 'smooth' });
         });
+    });
 
-        // Animation des particules
-        function createParticles() {
-            const particlesContainer = document.querySelector('.particles');
-            for (let i = 0; i < 50; i++) {
-                const particle = document.createElement('div');
-                particle.className = 'particle';
-                particle.style.left = Math.random() * 100 + '%';
-                particle.style.animationDelay = Math.random() * 6 + 's';
-                particle.style.animationDuration = (Math.random() * 3 + 3) + 's';
-                particlesContainer.appendChild(particle);
-            }
-        }
+    const observer = new IntersectionObserver(entries => {
+        entries.forEach(e => { if (e.isIntersecting) { e.target.style.opacity='1'; e.target.style.transform='translateY(0)'; } });
+    }, { threshold: 0.1 });
+    document.querySelectorAll('.skill-card,.project-card,.timeline-content').forEach(el => {
+        el.style.opacity='0'; el.style.transform='translateY(20px)'; el.style.transition='all 0.6s ease';
+        observer.observe(el);
+    });
 
-        // Smooth scroll
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                e.stopPropagation();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    const navbarHeight = document.querySelector('.navbar').offsetHeight;
-                    window.scrollTo({ top: target.offsetTop - navbarHeight, behavior: 'smooth' });
-                }
-            });
+    document.addEventListener('DOMContentLoaded', () => {
+        createParticles();
+        const form = document.getElementById('contactForm');
+        const status = document.getElementById('formStatus');
+        form.addEventListener('submit', function(e) {
+            e.preventDefault();
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const msg = document.getElementById('message').value;
+            window.location.href = `mailto:aboubcarkone@gmail.com?subject=${encodeURIComponent('Message de '+name)}&body=${encodeURIComponent('Nom: '+name+'\nEmail: '+email+'\n\n'+msg)}`;
+            status.style.display='block'; status.style.color='#00ff88';
+            status.textContent="✓ Votre client email va s'ouvrir !";
+            setTimeout(() => { form.reset(); setTimeout(() => { status.style.display='none'; }, 3000); }, 1000);
         });
+    });
 
-        // Animation d'apparition au scroll
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.style.opacity = '1';
-                    entry.target.style.transform = 'translateY(0)';
-                }
-            });
-        }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+    /* VEILLE RSS */
+    const VT_FEEDS = [
+        {name:'ZDNet FR',url:'https://www.zdnet.fr/feeds/rss/'},
+        {name:'LeMagIT',url:'https://www.lemagit.fr/rss/ToutLesMagazines.xml'},
+        {name:'Silicon.fr',url:'https://www.silicon.fr/feed'},
+        {name:'CERT-FR',url:'https://www.cert.ssi.gouv.fr/feed/'},
+        {name:'01net',url:'https://www.01net.com/rss.xml'}
+    ];
+    const VT_PROXIES = [
+        u=>`https://corsproxy.io/?${encodeURIComponent(u)}`,
+        u=>`https://api.allorigins.win/raw?url=${encodeURIComponent(u)}`,
+        u=>`https://thingproxy.freeboard.io/fetch/${u}`,
+        u=>`https://cors-anywhere.herokuapp.com/${u}`
+    ];
+    const VT_FALLBACK = [
+        {title:"CERT-FR : Bulletin de sécurité Microsoft",url:"https://www.cert.ssi.gouv.fr/",source:"CERT-FR",date:new Date().toISOString(),cat:"Sécurité",excerpt:"Publication mensuelle des correctifs de sécurité Microsoft."},
+        {title:"Vulnérabilités critiques dans le noyau Linux",url:"https://www.zdnet.fr/",source:"ZDNet FR",date:new Date(Date.now()-3600000).toISOString(),cat:"Système",excerpt:"Des mises à jour sont fortement recommandées pour les systèmes Linux."},
+        {title:"Zero Trust : la nouvelle approche de la cybersécurité",url:"https://www.silicon.fr/",source:"Silicon.fr",date:new Date(Date.now()-7200000).toISOString(),cat:"Sécurité",excerpt:"Le modèle Zero Trust s'impose comme standard pour sécuriser les accès."},
+        {title:"Kubernetes 1.31 : les nouveautés pour la production",url:"https://www.lemagit.fr/",source:"LeMagIT",date:new Date(Date.now()-10800000).toISOString(),cat:"Cloud",excerpt:"La nouvelle version apporte des améliorations majeures pour les conteneurs."},
+        {title:"Active Directory : bonnes pratiques de sécurité",url:"https://www.zdnet.fr/",source:"ZDNet FR",date:new Date(Date.now()-86400000).toISOString(),cat:"Système",excerpt:"Sécuriser Active Directory est essentiel pour protéger l'ensemble du SI."},
+        {title:"VPN d'entreprise : comment choisir en 2025",url:"https://www.silicon.fr/",source:"Silicon.fr",date:new Date(Date.now()-90000000).toISOString(),cat:"Réseau",excerpt:"Face à la multiplication du télétravail, le choix d'un VPN fiable est stratégique."},
+        {title:"L'IA générative transforme la cybersécurité",url:"https://www.lemagit.fr/",source:"LeMagIT",date:new Date(Date.now()-172800000).toISOString(),cat:"IA",excerpt:"Les outils d'IA aident les équipes SOC à détecter les incidents plus rapidement."},
+        {title:"Phishing : recrudescence des attaques sur les PME",url:"https://www.cert.ssi.gouv.fr/",source:"CERT-FR",date:new Date(Date.now()-176400000).toISOString(),cat:"Sécurité",excerpt:"Le CERT-FR alerte sur une vague de campagnes de phishing ciblant les PME françaises."}
+    ];
+    const VT_KW = {
+        'Sécurité':['sécurité','cyber','hack','vulnérabil','ransomware','phishing','malware','chiffrement','firewall','menace','attaque','faille','patch','CVE','CERT','ANSSI','zero-day'],
+        'Réseau':['réseau','VPN','firewall','routage','VLAN','Cisco','switch','pare-feu','DNS','IP','TCP','WiFi','5G','fibre'],
+        'Cloud':['cloud','AWS','Azure','GCP','kubernetes','docker','conteneur','SaaS','serverless','microservice'],
+        'IA':['intelligence artificielle','IA','machine learning','deep learning','LLM','GPT','neural','algorithme','automatisation','ChatGPT'],
+        'Système':['windows','linux','serveur','active directory','déploiement','virtualisation','VMware','Hyper-V','Ubuntu','mise à jour','patch']
+    };
+    let vtArticles=[], vtCurrentFilter='all';
 
-        document.querySelectorAll('.skill-card, .project-card, .timeline-content').forEach(el => {
-            el.style.opacity = '0';
-            el.style.transform = 'translateY(20px)';
-            el.style.transition = 'all 0.6s ease';
-            observer.observe(el);
-        });
-
-        // Navbar scroll
-        window.addEventListener('scroll', () => {
-            const navbar = document.querySelector('.navbar');
-            navbar.style.background = window.scrollY > 100
-                ? 'rgba(10, 14, 39, 0.98)'
-                : 'rgba(10, 14, 39, 0.95)';
-        });
-
-        // Formulaire de contact
-        document.addEventListener('DOMContentLoaded', () => {
-            createParticles();
-
-            const contactForm = document.getElementById('contactForm');
-            const formStatus  = document.getElementById('formStatus');
-
-            contactForm.addEventListener('submit', function(e) {
-                e.preventDefault();
-                const name    = document.getElementById('name').value;
-                const email   = document.getElementById('email').value;
-                const message = document.getElementById('message').value;
-                const subject = encodeURIComponent(`Message de ${name} - Portfolio`);
-                const body    = encodeURIComponent(`Nom: ${name}\nEmail: ${email}\n\nMessage:\n${message}`);
-                window.location.href = `mailto:aboubcarkone@gmail.com?subject=${subject}&body=${body}`;
-                formStatus.style.display = 'block';
-                formStatus.style.color   = '#00ff88';
-                formStatus.textContent   = "✓ Votre client email va s'ouvrir. Pensez à envoyer le message !";
-                setTimeout(() => {
-                    contactForm.reset();
-                    setTimeout(() => { formStatus.style.display = 'none'; }, 3000);
-                }, 1000);
-            });
-        });
-
-        /* =============================================
-           VEILLE TECHNOLOGIQUE - Flux RSS multi-proxy
-        ============================================= */
-
-        const VT_FEEDS = [
-            { name: 'ZDNet FR',   url: 'https://www.zdnet.fr/feeds/rss/' },
-            { name: 'LeMagIT',    url: 'https://www.lemagit.fr/rss/ToutLesMagazines.xml' },
-            { name: 'Silicon.fr', url: 'https://www.silicon.fr/feed' },
-            { name: 'CERT-FR',    url: 'https://www.cert.ssi.gouv.fr/feed/' },
-            { name: '01net',      url: 'https://www.01net.com/rss.xml' }
-        ];
-
-        // Liste de proxies CORS essayés dans l'ordre
-        const VT_PROXIES = [
-            url => `https://corsproxy.io/?${encodeURIComponent(url)}`,
-            url => `https://api.allorigins.win/raw?url=${encodeURIComponent(url)}`,
-            url => `https://thingproxy.freeboard.io/fetch/${url}`,
-            url => `https://cors-anywhere.herokuapp.com/${url}`
-        ];
-
-        // Articles de secours affichés si TOUS les proxies échouent
-        const VT_FALLBACK = [
-            { title: "CERT-FR : Bulletin de sécurité Microsoft du mardi des correctifs", url: "https://www.cert.ssi.gouv.fr/", source: "CERT-FR", date: new Date().toISOString(), cat: "Sécurité", excerpt: "Publication mensuelle des correctifs de sécurité Microsoft. Consultez le site du CERT-FR pour les dernières alertes." },
-            { title: "Mise à jour critique de sécurité pour les systèmes Linux", url: "https://www.zdnet.fr/", source: "ZDNet FR", date: new Date(Date.now()-3600000).toISOString(), cat: "Système", excerpt: "Des vulnérabilités critiques ont été identifiées dans le noyau Linux. Des mises à jour sont fortement recommandées." },
-            { title: "Zero Trust : la nouvelle approche incontournable de la cybersécurité", url: "https://www.silicon.fr/", source: "Silicon.fr", date: new Date(Date.now()-7200000).toISOString(), cat: "Sécurité", excerpt: "Le modèle Zero Trust s'impose comme standard pour sécuriser les accès aux ressources d'entreprise." },
-            { title: "Kubernetes 1.31 : les nouveautés pour les conteneurs en production", url: "https://www.lemagit.fr/", source: "LeMagIT", date: new Date(Date.now()-10800000).toISOString(), cat: "Cloud", excerpt: "La nouvelle version de Kubernetes apporte des améliorations majeures pour la gestion des conteneurs." },
-            { title: "Active Directory : bonnes pratiques pour sécuriser votre annuaire", url: "https://www.zdnet.fr/", source: "ZDNet FR", date: new Date(Date.now()-86400000).toISOString(), cat: "Système", excerpt: "Sécuriser Active Directory est essentiel pour protéger l'ensemble du SI. Découvrez les meilleures pratiques." },
-            { title: "VPN d'entreprise : comment choisir la bonne solution en 2025", url: "https://www.silicon.fr/", source: "Silicon.fr", date: new Date(Date.now()-90000000).toISOString(), cat: "Réseau", excerpt: "Face à la multiplication du télétravail, le choix d'un VPN fiable et sécurisé est devenu stratégique." },
-            { title: "L'IA générative transforme les métiers de la cybersécurité", url: "https://www.lemagit.fr/", source: "LeMagIT", date: new Date(Date.now()-172800000).toISOString(), cat: "IA", excerpt: "Les outils d'IA aident désormais les équipes SOC à détecter et répondre aux incidents plus rapidement." },
-            { title: "Phishing : recrudescence des attaques ciblant les entreprises françaises", url: "https://www.cert.ssi.gouv.fr/", source: "CERT-FR", date: new Date(Date.now()-176400000).toISOString(), cat: "Sécurité", excerpt: "Le CERT-FR alerte sur une vague de campagnes de phishing sophistiquées visant les PME françaises." }
-        ];
-
-        const VT_KEYWORDS = {
-            'Sécurité': ['sécurité','cyber','hack','vulnérabil','ransomware','phishing','malware','chiffrement','firewall','menace','attaque','faille','patch','CVE','CERT','ANSSI','zero-day'],
-            'Réseau':   ['réseau','VPN','firewall','routage','VLAN','Cisco','switch','pare-feu','DNS','IP','TCP','WiFi','5G','fibre'],
-            'Cloud':    ['cloud','AWS','Azure','GCP','kubernetes','docker','conteneur','SaaS','serverless','microservice','hybride'],
-            'IA':       ['intelligence artificielle','IA','machine learning','deep learning','LLM','GPT','neural','algorithme','automatisation','ChatGPT'],
-            'Système':  ['windows','linux','serveur','active directory','déploiement','virtualisation','VMware','Hyper-V','Ubuntu','RedHat','mise à jour','patch']
-        };
-
-        let vtArticles = [];
-        let vtCurrentFilter = 'all';
-
-        function vtCategorize(text) {
-            const t = text.toLowerCase();
-            for (const [cat, kw] of Object.entries(VT_KEYWORDS)) {
-                if (kw.some(k => t.includes(k.toLowerCase()))) return cat;
-            }
-            return 'Système';
-        }
-
-        function vtTimeAgo(dateStr) {
-            const d = new Date(dateStr);
-            if (isNaN(d)) return '';
-            const diff = (Date.now() - d) / 1000;
-            if (diff < 60)     return 'À l\'instant';
-            if (diff < 3600)   return Math.floor(diff / 60) + ' min';
-            if (diff < 86400)  return Math.floor(diff / 3600) + 'h';
-            if (diff < 172800) return 'Hier';
-            return d.toLocaleDateString('fr-FR', { day: 'numeric', month: 'short' });
-        }
-
-        function vtIsToday(dateStr) {
-            const d = new Date(dateStr);
-            return !isNaN(d) && d.toDateString() === new Date().toDateString();
-        }
-
-        // Parse un flux XML RSS/Atom brut en articles
-        function vtParseXML(xmlText, feedName) {
-            try {
-                const parser = new DOMParser();
-                const doc = parser.parseFromString(xmlText, 'text/xml');
-                const items = [...doc.querySelectorAll('item, entry')];
-                return items.slice(0, 8).map(item => {
-                    const title   = item.querySelector('title')?.textContent?.trim() || '';
-                    const link    = item.querySelector('link')?.textContent?.trim()
-                                 || item.querySelector('link')?.getAttribute('href') || '#';
-                    const pubDate = item.querySelector('pubDate, published, updated')?.textContent?.trim() || '';
-                    const desc    = item.querySelector('description, summary, content')?.textContent?.trim() || '';
-                    const clean   = desc.replace(/<[^>]*>/g, '').slice(0, 160).trim();
-                    return {
-                        title,
-                        url: link,
-                        source: feedName,
-                        date: pubDate,
-                        excerpt: clean,
-                        cat: vtCategorize(title + ' ' + clean)
-                    };
-                }).filter(a => a.title);
-            } catch { return []; }
-        }
-
-        // Essaie les proxies un par un pour un feed donné
-        async function vtFetchFeed(feed) {
-            for (const proxyFn of VT_PROXIES) {
-                try {
-                    const res = await fetch(proxyFn(feed.url), { signal: AbortSignal.timeout(6000) });
-                    if (!res.ok) continue;
-                    const text = await res.text();
-                    // Certains proxies renvoient du JSON wrappé (allorigins)
-                    let xml = text;
-                    if (text.trim().startsWith('{')) {
-                        try { xml = JSON.parse(text).contents || text; } catch { xml = text; }
-                    }
-                    const articles = vtParseXML(xml, feed.name);
-                    if (articles.length > 0) return articles;
-                } catch { /* proxy suivant */ }
-            }
-            return [];
-        }
-
-        function vtRenderCards(articles) {
-            const grid = document.getElementById('vt-grid');
-            const filtered = vtCurrentFilter === 'all'
-                ? articles
-                : articles.filter(a => a.cat === vtCurrentFilter);
-
-            if (!filtered.length) {
-                grid.innerHTML = '<div class="vt-empty-msg">Aucun article dans cette catégorie pour l\'instant.</div>';
-                return;
-            }
-
-            grid.innerHTML = filtered.map(a => `
-                <div class="vt-article-card">
-                    <div class="vt-card-top">
-                        <div class="vt-article-title">${vtEscape(a.title)}</div>
-                        <span class="vt-badge badge-${a.cat}">${a.cat}</span>
-                    </div>
-                    <div class="vt-card-meta">
-                        <span>📰 ${vtEscape(a.source)}</span>
-                        <span style="color:#404040;">·</span>
-                        <span>🕐 ${vtTimeAgo(a.date)}</span>
-                    </div>
-                    ${a.excerpt ? `<div class="vt-excerpt">${vtEscape(a.excerpt)}</div>` : ''}
-                    <a class="vt-read-link" href="${a.url}" target="_blank" rel="noopener">Lire l'article ↗</a>
-                </div>
-            `).join('');
-        }
-
-        function vtEscape(str) {
-            return String(str)
-                .replace(/&/g,'&amp;').replace(/</g,'&lt;')
-                .replace(/>/g,'&gt;').replace(/"/g,'&quot;');
-        }
-
-        function vtUpdateStats(articles, isFallback) {
-            document.getElementById('vt-stats').style.display = '';
-            document.getElementById('vt-stat-total').textContent = isFallback ? '—' : articles.length;
-            document.getElementById('vt-stat-secu').textContent  = articles.filter(a => a.cat === 'Sécurité').length;
-            document.getElementById('vt-stat-ia').textContent    = articles.filter(a => a.cat === 'IA' || a.cat === 'Cloud').length;
-            document.getElementById('vt-stat-today').textContent = isFallback ? '—' : articles.filter(a => vtIsToday(a.date)).length;
-        }
-
-        async function vtLoadFeeds() {
-            const btn      = document.getElementById('vt-refresh-btn');
-            const statusEl = document.getElementById('vt-status');
-            const grid     = document.getElementById('vt-grid');
-
-            btn.disabled = true;
-            grid.innerHTML = '<div class="vt-skeleton"></div><div class="vt-skeleton"></div><div class="vt-skeleton"></div><div class="vt-skeleton"></div>';
-            statusEl.textContent = '— Récupération en cours…';
-
-            const results = await Promise.allSettled(VT_FEEDS.map(vtFetchFeed));
-            const live = results.flatMap(r => r.status === 'fulfilled' ? r.value : []);
-            live.sort((a, b) => new Date(b.date) - new Date(a.date));
-
-            if (live.length > 0) {
-                // Flux live OK
-                vtArticles = live;
-                vtRenderCards(vtArticles);
-                vtUpdateStats(vtArticles, false);
-                const now = new Date().toLocaleTimeString('fr-FR', { hour: '2-digit', minute: '2-digit' });
-                statusEl.textContent = `— Mis à jour à ${now} · ${vtArticles.length} articles`;
-            } else {
-                // Tous les proxies ont échoué → articles de secours
-                vtArticles = VT_FALLBACK;
-                vtRenderCards(vtArticles);
-                vtUpdateStats(vtArticles, true);
-                statusEl.textContent = '— Mode hors-ligne · Articles représentatifs';
-            }
-
-            btn.disabled = false;
-        }
-
-        function vtFilter(el) {
-            document.querySelectorAll('.vt-filter-chip').forEach(c => c.classList.remove('active'));
-            el.classList.add('active');
-            vtCurrentFilter = el.dataset.cat;
-            vtRenderCards(vtArticles);
-        }
-
-        // Chargement initial + auto-refresh toutes les 5 minutes
-        vtLoadFeeds();
-        setInterval(vtLoadFeeds, 5 * 60 * 1000);
-    </script>
+    function vtCategorize(t){ const s=t.toLowerCase(); for(const[c,kw] of Object.entries(VT_KW)) if(kw.some(k=>s.includes(k.toLowerCase()))) return c; return 'Système'; }
+    function vtTimeAgo(d){ const dt=new Date(d); if(isNaN(dt)) return ''; const diff=(Date.now()-dt)/1000; if(diff<60) return 'À l\'instant'; if(diff<3600) return Math.floor(diff/60)+' min'; if(diff<86400) return Math.floor(diff/3600)+'h'; if(diff<172800) return 'Hier'; return dt.toLocaleDateString('fr-FR',{day:'numeric',month:'short'}); }
+    function vtIsToday(d){ const dt=new Date(d); return !isNaN(dt)&&dt.toDateString()===new Date().toDateString(); }
+    function vtParseXML(xml,name){ try{ const doc=new DOMParser().parseFromString(xml,'text/xml'); return [...doc.querySelectorAll('item,entry')].slice(0,8).map(i=>{ const title=i.querySelector('title')?.textContent?.trim()||''; const link=i.querySelector('link')?.textContent?.trim()||i.querySelector('link')?.getAttribute('href')||'#'; const date=i.querySelector('pubDate,published,updated')?.textContent?.trim()||''; const desc=i.querySelector('description,summary,content')?.textContent?.trim()||''; const clean=desc.replace(/<[^>]*>/g,'').slice(0,160).trim(); return {title,url:link,source:name,date,excerpt:clean,cat:vtCategorize(title+' '+clean)}; }).filter(a=>a.title); }catch{return[];} }
+    async function vtFetchFeed(feed){ for(const pf of VT_PROXIES){ try{ const r=await fetch(pf(feed.url),{signal:AbortSignal.timeout(6000)}); if(!r.ok) continue; let xml=await r.text(); if(xml.trim().startsWith('{')){ try{xml=JSON.parse(xml).contents||xml;}catch{} } const a=vtParseXML(xml,feed.name); if(a.length>0) return a; }catch{} } return []; }
+    function vtEscape(s){ return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
+    function vtRenderCards(arts){ const g=document.getElementById('vt-grid'); const f=vtCurrentFilter==='all'?arts:arts.filter(a=>a.cat===vtCurrentFilter); if(!f.length){g.innerHTML='<div class="vt-empty-msg">Aucun article dans cette catégorie.</div>';return;} g.innerHTML=f.map(a=>`<div class="vt-article-card"><div class="vt-card-top"><div class="vt-article-title">${vtEscape(a.title)}</div><span class="vt-badge badge-${a.cat}">${a.cat}</span></div><div class="vt-card-meta"><span>📰 ${vtEscape(a.source)}</span><span style="color:#404040;">·</span><span>🕐 ${vtTimeAgo(a.date)}</span></div>${a.excerpt?`<div class="vt-excerpt">${vtEscape(a.excerpt)}</div>`:''}<a class="vt-read-link" href="${a.url}" target="_blank" rel="noopener">Lire l'article ↗</a></div>`).join(''); }
+    function vtUpdateStats(arts,fb){ document.getElementById('vt-stats').style.display=''; document.getElementById('vt-stat-total').textContent=fb?'—':arts.length; document.getElementById('vt-stat-secu').textContent=arts.filter(a=>a.cat==='Sécurité').length; document.getElementById('vt-stat-ia').textContent=arts.filter(a=>a.cat==='IA'||a.cat==='Cloud').length; document.getElementById('vt-stat-today').textContent=fb?'—':arts.filter(a=>vtIsToday(a.date)).length; }
+    async function vtLoadFeeds(){ const btn=document.getElementById('vt-refresh-btn'),st=document.getElementById('vt-status'),g=document.getElementById('vt-grid'); btn.disabled=true; g.innerHTML='<div class="vt-skeleton"></div><div class="vt-skeleton"></div><div class="vt-skeleton"></div><div class="vt-skeleton"></div>'; st.textContent='— Récupération en cours…'; const res=await Promise.allSettled(VT_FEEDS.map(vtFetchFeed)); const live=res.flatMap(r=>r.status==='fulfilled'?r.value:[]); live.sort((a,b)=>new Date(b.date)-new Date(a.date)); if(live.length>0){ vtArticles=live; vtRenderCards(vtArticles); vtUpdateStats(vtArticles,false); const now=new Date().toLocaleTimeString('fr-FR',{hour:'2-digit',minute:'2-digit'}); st.textContent=`— Mis à jour à ${now} · ${vtArticles.length} articles`; }else{ vtArticles=VT_FALLBACK; vtRenderCards(vtArticles); vtUpdateStats(vtArticles,true); st.textContent='— Mode hors-ligne · Articles représentatifs'; } btn.disabled=false; }
+    function vtFilter(el){ document.querySelectorAll('.vt-filter-chip').forEach(c=>c.classList.remove('active')); el.classList.add('active'); vtCurrentFilter=el.dataset.cat; vtRenderCards(vtArticles); }
+    vtLoadFeeds();
+    setInterval(vtLoadFeeds, 5*60*1000);
+</script>
 </body>
+</html>
+
 </html>
